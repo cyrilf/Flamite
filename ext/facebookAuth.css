@@ -1,0 +1,28 @@
+.tinderrex {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+
+  width: 100%;
+  height: 100%;
+
+  background: rgb(250, 250, 250);
+}
+
+.tinderrex-message {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+
+  width: 400px;
+  height: 100px;
+
+  vertical-align: middle;
+  text-align: center;
+  color: #212121;
+}

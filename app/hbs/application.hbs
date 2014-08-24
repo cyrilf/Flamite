@@ -1,0 +1,19 @@
+<div class="header-main">
+  <div class="container">
+    {{#link-to 'home' class="botinder-logo"}}Botinder{{/link-to}} 
+    <button {{action "update"}}>Up</button>
+    <ul class="main-menu">
+      <li>{{#link-to 'liker'}}Liker{{/link-to}}</li>
+      <li>{{#link-to 'matches'}}Messages{{/link-to}}</li>
+      <li>{{#link-to 'account'}}Account{{/link-to}}</li>
+    </ul>
+  </div>
+</div>
+<div class="page">
+  <div class="container">
+    {{outlet}}
+  </div>
+</div>
+<div {{bind-attr class=":update updateOngo::hidden"}}>
+  mise à jour en cours
+</div>

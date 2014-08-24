@@ -1,0 +1,1 @@
+Botinder.init();

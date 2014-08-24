@@ -1,0 +1,9 @@
+Matches<br>
+on en sort: {{outlet}}
+<ul>
+  {{#each match in model}}
+    <li>
+      <img {{bind-attr src="match.person.photo"}}>{{#link-to 'matches.match' match._id}}{{match.person.name}}{{/link-to}}
+    </li>
+  {{/each}}
+</ul>

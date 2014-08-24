@@ -1,0 +1,13 @@
+test ?!  > {{model.id}} - user: {{model.user.name}}<br>
+<ul>
+  {{#each message in model.messages}}
+    <li>
+      {{message.user.name}}: {{message.message}}
+    </li>
+  {{/each}}
+</ul>
+<form class="message-post" {{action "submit" on="submit"}}>
+{{textarea value=message cols="80" rows="6"}}
+  <button type="submit">Envoyer</button>
+  <button {{action "refresh"}}>Refresh</button>
+</form>
