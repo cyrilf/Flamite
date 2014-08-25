@@ -1,8 +1,6 @@
 Botinder.MatchesMatchController = Ember.Controller.extend({
   message: '',
-  init: function() {
-
-  },
+  
   actions: {
     submit: function() {
       var match = this.get('model');

@@ -34,6 +34,10 @@ var Botinder = (function() {
     init: function() {
       Botinder.IndexedDB.initDatabase(function(result) {
 
+        // init
+        Botinder.Tinder.init();
+        Botinder.Facebook.init();
+
         // reset localstorage if IndexedDB need upgrade
         if (result.upgradeneeded) {
           localStorage.removeItem('last_activity_date');

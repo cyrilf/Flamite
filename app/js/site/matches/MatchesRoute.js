@@ -4,6 +4,7 @@ Botinder.MatchesRoute = Ember.Route.extend({
       refreshModel: true
     }
   },
+  
   model: function(params) {
     return new Ember.RSVP.Promise(function(resolve) {
       chrome.runtime.sendMessage({

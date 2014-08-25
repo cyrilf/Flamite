@@ -42,9 +42,10 @@ Botinder.Facebook = (function(Botinder) {
     });
   }
 
-  chromeEvent();
-
   return {
+    init: function() {
+      chromeEvent();
+    },
     openAuthTab: openAuthTab,
     facebookAuthSuccess: facebookAuthSuccess
   };

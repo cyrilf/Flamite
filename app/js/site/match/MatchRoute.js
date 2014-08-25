@@ -1,14 +1,17 @@
 Botinder.MatchesMatchRoute = Ember.Route.extend({
   timeout: null,
+  
   activate: function() {
     var self = this;
     this.set('timeout', setInterval(function() {
       self.refresh();
     }, 10000));
   },
+
   deactivate: function() {
     clearTimeout(this.get('timeout'));
   },
+
   model: function(params) {
     return new Ember.RSVP.Promise(function(resolve) {
       chrome.runtime.sendMessage({

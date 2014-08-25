@@ -141,9 +141,10 @@ Botinder.Tinder = (function(Botinder) {
     });
   }
 
-  chromeEvent();
-
   return {
+    init: function() {
+      chromeEvent();
+    },
     request: request,
     auth: auth,
     setToken: setToken,

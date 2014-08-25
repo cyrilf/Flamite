@@ -1,4 +1,4 @@
 Botinder
 ========
 
-The Tinder extension
+A Tinder extension

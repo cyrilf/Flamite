@@ -1,5 +1,6 @@
 Botinder.ApplicationController = Ember.Controller.extend({
   updateOngo: false,
+  
   init: function() {
     var self = this;
 

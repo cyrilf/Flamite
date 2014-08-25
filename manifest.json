@@ -14,7 +14,6 @@
           "vendor/jquery.min.js", 
           "ext/Botinder.js", 
           "ext/IndexedDB.js", 
-          "ext/Auth.js", 
           "ext/Facebook.js", 
           "ext/Tinder.js", 
           "ext/background.js"
