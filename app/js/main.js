@@ -2,10 +2,6 @@ var Botinder = Ember.Application.create({
   rootElement: '#app'
 });
 
-chrome.runtime.sendMessage({type: 'user'}, function(user) {
-  Botinder.User = user;
-});
-
 Botinder.Router.map(function() {
   this.route('home', {path: '/'});
   this.route('liker');

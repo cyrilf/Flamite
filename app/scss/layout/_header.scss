@@ -1,23 +1,43 @@
 .header-main {
-  height: 76px;
+  .container {
+    overflow: hidden;
+  }
 
   a {
     text-decoration: none;
   }
+
+  .user-photo {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 12px;
+  }
 }
 
 .botinder-logo {
-  color: #212121;
+  float: left;
+  display: inline-block;
+  padding: 16px 0;
+  font-family: 'Pacifico';
+  font-size: 2.8em;
+  color: #ff7258;
 }
 
 .main-menu {
-  float: right;
-
-  a {
-    color: #212121;
-  }
+  float: left;
+  display: inline-block;
+  margin: 30px 0 0 32px; 
 
   li {
     display: inline-block;
+  }
+
+  a {
+    display: block;
+    padding: 18px;
+    font-family: 'Lato';
+    color: #ff7258;
   }
 }
