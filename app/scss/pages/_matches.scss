@@ -1,0 +1,24 @@
+.page-matches {
+  .matches {
+    .item {
+      margin: 12px 0;
+      overflow: hidden;
+    }
+
+    .user-photo-container {
+      float: left;
+    }
+
+    .user-photo {
+      border-radius: 18px;
+    }
+
+    .user-name {
+      float: left;
+      margin: 14px 0 0 24px;
+      font-family: 'Lato';
+      font-size: 2.4em;
+      color: #cfcfcf;
+    }
+  }
+}

@@ -3,8 +3,36 @@
     overflow: hidden;
   }
 
+  .botinder-logo {
+    float: left;
+    display: inline-block;
+    padding: 16px 0;
+    font-family: 'Pacifico';
+    font-size: 2.8em;
+    color: #ff7258;
+  }
+}
+
+.main-menu {
+  float: left;
+  display: inline-block;
+  margin: 39px 0 0 32px; 
+
+  li {
+    display: inline-block;
+  }
+
   a {
-    text-decoration: none;
+    display: block;
+    padding: 0 18px;
+    height: 55px;
+    line-height: 55px;
+    font-family: 'Lato';
+    color: #ff7258;
+  }
+
+  &.right {
+    float: right;
   }
 
   .user-photo {
@@ -13,31 +41,5 @@
     border-radius: 50%;
     vertical-align: middle;
     margin-right: 12px;
-  }
-}
-
-.botinder-logo {
-  float: left;
-  display: inline-block;
-  padding: 16px 0;
-  font-family: 'Pacifico';
-  font-size: 2.8em;
-  color: #ff7258;
-}
-
-.main-menu {
-  float: left;
-  display: inline-block;
-  margin: 30px 0 0 32px; 
-
-  li {
-    display: inline-block;
-  }
-
-  a {
-    display: block;
-    padding: 18px;
-    font-family: 'Lato';
-    color: #ff7258;
   }
 }
