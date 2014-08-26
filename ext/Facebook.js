@@ -8,19 +8,9 @@ Botinder.Facebook = (function(Botinder) {
     Botinder.Tinder.auth(facebookToken).done(function(result) {
       localStorage.setItem('tinder_token', result.token);
       localStorage.setItem('user', JSON.stringify(result.user));
-
+      
       Botinder.Tinder.setToken(result.token);
-
-      var prm = Botinder.Tinder.updateTinderData()
-      if (prm) {
-        prm.done(function() {
-          Botinder.updateTabToApp(tabId);
-        }).fail(function() {
-          chrome.tabs.remove(tabId, function() {
-            Botinder.openAuthTab();
-          });
-        });
-      }
+      Botinder.updateTabToApp(tabId);
     });
   }
 

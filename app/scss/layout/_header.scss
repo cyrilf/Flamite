@@ -1,4 +1,11 @@
 .header-main {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  width: 100%;
+  background: #FCFCFC;
+  box-shadow: 0 2px 1px 0px rgba(0, 0, 0, 0.03);;
+
   .container {
     overflow: hidden;
   }
@@ -6,7 +13,7 @@
   .botinder-logo {
     float: left;
     display: inline-block;
-    padding: 16px 0;
+    padding: 6px 0;
     font-family: 'Pacifico';
     font-size: 2.8em;
     color: #ff7258;
@@ -16,7 +23,7 @@
 .main-menu {
   float: left;
   display: inline-block;
-  margin: 39px 0 0 32px; 
+  margin: 19px 0 0 32px; 
 
   li {
     display: inline-block;
@@ -41,5 +48,9 @@
     border-radius: 50%;
     vertical-align: middle;
     margin-right: 12px;
+  }
+
+  .user-profile {
+    color: #c7c7c7;
   }
 }

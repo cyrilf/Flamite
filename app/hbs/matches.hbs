@@ -1,7 +1,4 @@
 <div class="page-matches">
-  <div class="match">
-    {{outlet}}
-  </div>
   <ul class="matches">
     {{#each match in model}}
     <li class="item">
@@ -14,4 +11,7 @@
     </li>
     {{/each}}
   </ul>
+  <div class="match">
+    {{outlet}}
+  </div>
 </div>

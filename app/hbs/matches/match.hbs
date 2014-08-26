@@ -1,13 +1,16 @@
-test ?!  > {{model.id}} - user: {{model.user.name}}<br>
-<ul>
+<div class="match-profil">
+  <div class="wrap">
+    {{model.id}} - user: {{model.user.name}}
+  </div>
+</div>
+<ul class="messages">
   {{#each message in model.messages}}
-    <li>
+    <li class="item">
       {{message.user.name}}: {{message.message}}
     </li>
   {{/each}}
 </ul>
-<form class="message-post" {{action "submit" on="submit"}}>
-{{textarea value=message cols="80" rows="6"}}
+<form class="match-message" {{action "submit" on="submit"}}>
+  {{textarea value=message}}
   <button type="submit">Envoyer</button>
-  <button {{action "refresh"}}>Refresh</button>
 </form>

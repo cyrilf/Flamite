@@ -4,6 +4,7 @@
 
 Botinder.Tinder = (function(Botinder) {
   var token = null;
+  var stop = false;
 
   function request(path, method, data) {
     return $.ajax({
@@ -15,12 +16,19 @@ Botinder.Tinder = (function(Botinder) {
           request.setRequestHeader('X-Auth-Token', localStorage.getItem('tinder_token'));
         }
       }
+    }).fail(function(res) {
+      if (res.status == 401 && !stop) {
+        stop = true;
+        Botinder.Facebook.openAuthTab();
+      }
     });
   }
 
   function auth(facebook_token) {
     return this.request('auth', 'POST', {
       facebook_token: facebook_token
+    }).done(function() {
+      stop = false;
     });
   }
 
@@ -80,6 +88,7 @@ Botinder.Tinder = (function(Botinder) {
     })
 
     prm.fail(function() {
+
       Botinder.sgl.update_tinder_data_ongo = false;
       callback && callback('fail');
     });
