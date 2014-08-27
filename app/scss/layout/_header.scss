@@ -1,29 +1,36 @@
-.header-main {
-  position: fixed;
-  z-index: 10;
-  top: 0;
-  width: 100%;
-  background: #FCFCFC;
-  box-shadow: 0 2px 1px 0px rgba(0, 0, 0, 0.03);;
+.botinder-logo {
+  display: block;
+  padding: 12px 32px 0 0;
+  font-family: 'Pacifico';
+  font-size: 2.8em;
+  color: #ff7258;
+}
 
-  .container {
-    overflow: hidden;
+.main-side {
+  float: left;
+  width: 24%;
+  height: 100%;
+  background: #27282B;
+
+  .top {
+    text-align: right;
+    background: #212224;
+    box-shadow: -8px 0px 3px 4px rgba(0, 0, 0, 0.2);
   }
 
-  .botinder-logo {
-    float: left;
-    display: inline-block;
-    padding: 6px 0;
-    font-family: 'Pacifico';
-    font-size: 2.8em;
-    color: #ff7258;
+  .side {
+    overflow-y: scroll;
+    border-top: 1px solid #2F3033;
+  }
+
+  &::-webkit-scrollbar-thumb,
+  ::-webkit-scrollbar-thumb {
+    background: #54575F;
   }
 }
 
 .main-menu {
-  float: left;
-  display: inline-block;
-  margin: 19px 0 0 32px; 
+  padding-right: 8px;
 
   li {
     display: inline-block;
@@ -31,11 +38,11 @@
 
   a {
     display: block;
-    padding: 0 18px;
+    padding: 0 12px;
     height: 55px;
     line-height: 55px;
     font-family: 'Lato';
-    color: #ff7258;
+    color: #EEEEEE;
   }
 
   &.right {
@@ -47,10 +54,5 @@
     height: 42px;
     border-radius: 50%;
     vertical-align: middle;
-    margin-right: 12px;
-  }
-
-  .user-profile {
-    color: #c7c7c7;
   }
 }

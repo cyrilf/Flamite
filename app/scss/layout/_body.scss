@@ -1,7 +1,6 @@
 body {
-  padding-top: 96px;
   font-family: 'Roboto-Light';
-  background-color: #f1f1f1;
+  background-color: #fff;
 }
 
 .update {
@@ -11,4 +10,9 @@ body {
   padding: 6px;
   background: #97E4BC;
   color: #fff;
+}
+
+.page {
+    float: left;
+    width: 76%;
 }

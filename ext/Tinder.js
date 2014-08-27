@@ -98,9 +98,10 @@ Botinder.Tinder = (function(Botinder) {
 
   function chromeEvent() {
     chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-
+      
       // Tinder request
       if (request.type === 'request') {
+        console.log('request');
         var prm = Botinder.Tinder.request(
           request.path, 
           request.method ? request.method : 'GET', 

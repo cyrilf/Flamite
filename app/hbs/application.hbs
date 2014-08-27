@@ -1,11 +1,14 @@
-<div class="header-main">
-  <div class="container">
+<div class="main-side">
+  <div class="top">
     {{#link-to 'home' class="botinder-logo"}}Botinder{{/link-to}} 
-    <ul class="main-menu right">
-      <li>{{#link-to 'liker'}}Liker{{/link-to}}</li>
+    <ul class="main-menu">
+      <li>{{#link-to 'like'}}Like{{/link-to}}</li>
       <li>{{#link-to 'matches'}}Messages{{/link-to}}</li>
-      <li>{{#link-to 'account' class="user-profile"}}<img {{bind-attr src="user.photo" class=":user-photo"}}> Profil{{/link-to}}</li>
+      <li>{{#link-to 'account' class="user-profile"}}<img {{bind-attr src="user.photo" class=":user-photo"}}>{{/link-to}}</li>
     </ul>
+  </div>
+  <div class="side">
+    {{outlet side}}
   </div>
 </div>
 <div class="page">

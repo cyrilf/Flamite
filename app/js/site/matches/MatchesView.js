@@ -1,9 +1,7 @@
 Botinder.MatchesView = Ember.View.extend({
   refreshScroll: function() {
-    var height = (window.innerHeight - $('.header-main').height());
-
-    $('.matches').css('height', height + 'px');
-    $('.match').css('height', height + 'px');
+    var height = (window.innerHeight - $('.main-side .top').height() - 1);
+    $('.side').css('height', height + 'px');
   },
 
   didInsertElement: function() {

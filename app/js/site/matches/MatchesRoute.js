@@ -4,6 +4,13 @@ Botinder.MatchesRoute = Ember.Route.extend({
       refreshModel: true
     }
   },
+
+  renderTemplate: function() {
+    this.render();
+    this.render('matchesSide', {
+      outlet: 'side'
+    });
+  },
   
   model: function(params) {
     return new Ember.RSVP.Promise(function(resolve) {

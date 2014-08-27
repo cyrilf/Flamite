@@ -1,0 +1,14 @@
+<div class="page-matches">
+  <ul class="matches">
+    {{#each match in model}}
+    <li class="item">
+      <div class="user-photo-container">
+        <img {{bind-attr src="match.person.photo" class=":user-photo"}}>
+      </div>
+      {{#link-to 'matches.match' match._id}}
+        <div class="user-name">{{match.person.name}}</div>
+      {{/link-to}}
+    </li>
+    {{/each}}
+  </ul>
+</div>

@@ -1,6 +1,6 @@
 Botinder.MatchesMatchView = Ember.View.extend({
   refreshScroll: function() {
-    var height = $('.match').height() - $('.match-profil').height() - $('.match-message').height();
+    var height = window.innerHeight - $('.match-profil').height() - $('.match-message').height();
     
     $('.match .messages').css('height', height + 'px');
   },

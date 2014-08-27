@@ -1,7 +1,5 @@
 .page-matches {
   .match {
-    float: left;
-    width: 70%;
     background: #fff;
 
     .messages {
@@ -41,10 +39,7 @@
   }
 
   .matches {
-    float: left;
-    width: 30%;
-    overflow-y: scroll;
-    background: #27282B;
+    margin-top: 14px;
 
     .item {
       margin: 12px 0;
@@ -66,14 +61,10 @@
 
     .user-name {
       float: right;
-      margin: 6px 16px 0 0;
-      font-family: 'Lato';
-      font-size: 1.4em;
-      color: #cfcfcf;
+      margin: 10px 15px 0 0;
+      font-family: 'Raleway-Regular';
+      font-size: 1.2em;
+      color: #858996;
     }
-  }
-
-  .matches::-webkit-scrollbar-thumb {
-    background: #54575F;
   }
 }
