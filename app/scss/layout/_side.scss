@@ -2,7 +2,7 @@
   position: fixed;
   width: 24%;
   height: 100%;
-  background: #27282B;
+  background: #444C63;
 
   .side {
     overflow-y: scroll;
@@ -10,7 +10,7 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #54575F;
+    background: #666F86;
   }
 }
 
@@ -35,7 +35,7 @@
     height: 55px;
     line-height: 55px;
     font-family: 'Lato';
-    color: #EEEEEE;
+    color: #99A0B3;
   }
 
   .user-photo {

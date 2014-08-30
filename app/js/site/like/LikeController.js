@@ -2,10 +2,12 @@ Botinder.LikeController = Ember.ArrayController.extend({
   delay: 1000,
   running: false,
   getMore: false,
+  displayNb: 0,
   users: [],
 
   renderUser: function() {
     var users = this.get('users');
+    var displayNb = this.get('displayNb');
     
     // check running status
     if (!this.get('running') || this.get('getMore')) {
@@ -20,10 +22,16 @@ Botinder.LikeController = Ember.ArrayController.extend({
     }
 
     // display user
-    console.log('user', users[0]);
+    this.unshiftObject(users[0]);
 
     users.shift();
+
+    if (displayNb >= 8) {
+      this.popObject();
+    }
+
     this.set('users', users);
+    this.set('displayNb', displayNb + 1);
 
     setTimeout(function(context) {
       context.renderUser.call(context);
@@ -40,8 +48,6 @@ Botinder.LikeController = Ember.ArrayController.extend({
     this.set('users', this.get('users').concat(users));
     this.set('getMore', false);
     this.renderUser();
-
-    //this.pushObjects(users);
   },
 
   actions: {
