@@ -21,6 +21,11 @@ Botinder.MatchesRoute = Ember.Route.extend({
         for (var i = 0; i < results.length; i++) {
           var match = results[i];
           
+          if (!match.person) {
+            console.log('error with match', match._id);
+            continue;
+          }
+
           if (match.person.photos.length > 0) {
             match.id = match._id;
             match.person.photo = match.person.photos[0].processedFiles[3].url;

@@ -1,53 +1,52 @@
-Botinder.LikeController = Ember.Controller.extend({
-  activated: function() {
-    console.log('act');
+Botinder.LikeController = Ember.ArrayController.extend({
+  delay: 1000,
+  running: false,
+  getMore: false,
+  users: [],
+
+  renderUser: function() {
+    var users = this.get('users');
+    
+    // check running status
+    if (!this.get('running') || this.get('getMore')) {
+      return;
+    }
+
+    // check users length
+    if (users.length === 0) {
+      this.set('getMore', true);
+      this.get('target').send('getMore');
+      return;
+    }
+
+    // display user
+    console.log('user', users[0]);
+
+    users.shift();
+    this.set('users', users);
+
+    setTimeout(function(context) {
+      context.renderUser.call(context);
+    }, this.get('delay'), this);
   },
-  init: function() {
-    var users = [];
 
-    function getRecs(callback) {
-      chrome.runtime.sendMessage({
-        type: 'request',
-        path: 'recs',
-        data: {}
-      }, function(obj) {
-        for (var i = 0; i < obj.results.length; i++) {
-          var _user = obj.results[i];
-          var photos = [];
-
-          for (var ii = 0; ii < _user.photos.length; ii++) {
-            var _photos = _user.photos[ii];
-            photos[ii] = _photos.processedFiles[0].url;
-          }
-
-          users.push({
-            id: _user._id,
-            name: _user.name,
-            photos: photos
-          });
-        }
-
-        callback();
-      });
+  runningChanged: function() {
+    if (this.get('running')) {
+      this.renderUser();
     }
+  }.observes('running'),
 
-    function go() {
-      getRecs(function() {
-        var ite = setInterval(function() {
-          var user = users.shift();
+  gotMore: function(users) {
+    this.set('users', this.get('users').concat(users));
+    this.set('getMore', false);
+    this.renderUser();
 
-          if (user) {
-            console.log('user', user);
-            $('.like-list').prepend('<img src="' + user.photos[0] + '" width=200 height=200>');
-          } else {
-            console.log('clearInterval');
-            clearInterval(ite);
-            //go();
-          }
-        }, 500);
-      });
+    //this.pushObjects(users);
+  },
+
+  actions: {
+    changeRunningStatus: function() {
+      this.toggleProperty('running');
     }
-
-    go();
   }
 });

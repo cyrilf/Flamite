@@ -3,6 +3,11 @@ body {
   background-color: #fff;
 }
 
+.page {
+    float: right;
+    width: 76%;
+}
+
 .update {
   position: absolute;
   top: 0;
@@ -10,9 +15,4 @@ body {
   padding: 6px;
   background: #97E4BC;
   color: #fff;
-}
-
-.page {
-    float: left;
-    width: 76%;
 }

@@ -1,1 +1,7 @@
-<div class="like-list"></div>
+<div class="page-like">
+  <div class="like-list">
+    {{#each user in controller}}
+      {{view view.itemView userBinding=user}}
+    {{/each}}
+  </div>
+</div>

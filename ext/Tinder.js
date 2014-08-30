@@ -81,7 +81,7 @@ Botinder.Tinder = (function(Botinder) {
       }
 
       // set settings
-      localStorage.setItem('last_activity_date', obj.last_activity_date);
+      localStorage.setItem('last_activity_date', obj.matches.length === 0 ? last_activity_date : obj.last_activity_date);
       Botinder.sgl.update_tinder_data_ongo = false;
 
       callback && callback('done');

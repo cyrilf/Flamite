@@ -1,16 +1,18 @@
-<div class="match-profil">
-  <div class="wrap">
-    {{model.id}} - user: {{model.user.name}}
+<div class="match">
+  <div class="profil">
+    <div class="wrap">
+      {{model.id}} - user: {{model.user.name}}
+    </div>
   </div>
+  <ul class="messages">
+    {{#each message in model.messages}}
+      <li class="item">
+        {{message.user.name}}: {{message.message}}
+      </li>
+    {{/each}}
+  </ul>
+  <form class="message" {{action "submit" on="submit"}}>
+    {{textarea value=message}}
+    <button type="submit">Envoyer</button>
+  </form>
 </div>
-<ul class="messages">
-  {{#each message in model.messages}}
-    <li class="item">
-      {{message.user.name}}: {{message.message}}
-    </li>
-  {{/each}}
-</ul>
-<form class="match-message" {{action "submit" on="submit"}}>
-  {{textarea value=message}}
-  <button type="submit">Envoyer</button>
-</form>

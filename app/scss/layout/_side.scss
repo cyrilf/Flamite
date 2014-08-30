@@ -1,32 +1,25 @@
+.main-side {
+  position: fixed;
+  width: 24%;
+  height: 100%;
+  background: #27282B;
+
+  .side {
+    overflow-y: scroll;
+    color: #fff;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #54575F;
+  }
+}
+
 .botinder-logo {
   display: block;
   padding: 12px 32px 0 0;
   font-family: 'Pacifico';
   font-size: 2.8em;
   color: #ff7258;
-}
-
-.main-side {
-  float: left;
-  width: 24%;
-  height: 100%;
-  background: #27282B;
-
-  .top {
-    text-align: right;
-    background: #212224;
-    box-shadow: -8px 0px 3px 4px rgba(0, 0, 0, 0.2);
-  }
-
-  .side {
-    overflow-y: scroll;
-    border-top: 1px solid #2F3033;
-  }
-
-  &::-webkit-scrollbar-thumb,
-  ::-webkit-scrollbar-thumb {
-    background: #54575F;
-  }
 }
 
 .main-menu {
@@ -43,10 +36,6 @@
     line-height: 55px;
     font-family: 'Lato';
     color: #EEEEEE;
-  }
-
-  &.right {
-    float: right;
   }
 
   .user-photo {

@@ -1,7 +1,13 @@
 .page-matches {
   .match {
-    background: #fff;
+    .profil {
+      background: #f1f1f1;
 
+      .wrap {
+        padding: 12px;
+      }
+    }
+    
     .messages {
       overflow-y: scroll;
 
@@ -10,15 +16,7 @@
       }
     }
 
-    .match-profil {
-      background: #f1f1f1;
-
-      .wrap {
-        padding: 12px;
-      }
-    }
-
-    .match-message {
+    .message {
       position: relative;
       background: #f1f1f1;
 
@@ -27,9 +25,10 @@
         padding: 12px;
         min-height: 102px;
         border: none;
-        border-top: 4px solid #f1f1f1;
+        background: #f1f1f1;
         outline: none;
       }
+
       button {
         position: absolute;
         top: 0;
@@ -39,8 +38,6 @@
   }
 
   .matches {
-    margin-top: 14px;
-
     .item {
       margin: 12px 0;
       overflow: hidden;

@@ -1,0 +1,19 @@
+.page-like {
+  .like-item {
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  .photo {
+    .photo-container {
+      width: 100%;
+      height: 184px;
+      background-size: cover;
+      background-position: center center;
+    }
+  }
+
+  .profil {
+    height: 184px;
+  }
+}

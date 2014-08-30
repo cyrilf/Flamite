@@ -1,0 +1,14 @@
+<table class="like-item">
+  <tr>
+    <td class="profil">
+      {{user.name}}
+    </td>
+    {{#each photo in user.photos}}
+      <td class="photo">
+        {{#if photo}}
+          {{view view.photoView photoBinding=photo}}
+        {{/if}}
+      </td>
+    {{/each}}
+  </tr>
+</table>
