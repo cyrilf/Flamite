@@ -38,30 +38,24 @@
   }
 
   .matches {
+    padding: 32px 0;
+
     .item {
       margin: 12px 0;
-      overflow: hidden;
-    }
-
-    .user-photo-container,
-    .user-photo {
-      width: 42px;
-      height: 42px;
-    }
-    .user-photo-container {
-      float: right;
-      margin-right: 16px;
-    }
-    .user-photo {
-      border-radius: 50%;
-    }
-
-    .user-name {
-      float: right;
-      margin: 10px 15px 0 0;
       font-family: 'Raleway-Regular';
       font-size: 1.2em;
-      color: #99A0B3;
+      
+      a {
+        color: #99A0B3;
+      }
+    }
+
+    .user-photo {
+      margin-left: 6px;
+      width: 42px;
+      height: 42px;
+      border-radius: 4px;
+      vertical-align: middle;
     }
   }
 }

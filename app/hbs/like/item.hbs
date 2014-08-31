@@ -3,6 +3,14 @@
     <td class="profil">
       <div class="wrap">
         <div class="username">{{user.name}} <span class="age">{{user.age}}</span></div>
+        <div class="actions">
+          {{#unless view.match}}
+            <button {{action like 1 target='view'}} {{bind-attr class=':button :medium :green view.liked:active'}}>Like</button>
+            <button {{action like 0 target='view'}} {{bind-attr class=':button :medium :red view.disliked:active'}}>Dislike</button>
+          {{else}}
+            {{#link-to 'matches.match' view.match}}<button class="button medium pink active">Match!</button>{{/link-to}}
+          {{/unless}}
+        </div>
         <div class="info">
           <div class="min-title">Birthday</div>
           <div class="min-value">{{user.birth_date}}</div>

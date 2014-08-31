@@ -5,10 +5,14 @@ Botinder.LikeController = Ember.ArrayController.extend({
   displayNb: 0,
   users: [],
 
+  start: function() {
+    return this.get('running') ? 'Break!' : 'Start!';
+  }.property('running'),
+
   renderUser: function() {
     var users = this.get('users');
     var displayNb = this.get('displayNb');
-    
+
     // check running status
     if (!this.get('running') || this.get('getMore')) {
       return;
@@ -53,6 +57,15 @@ Botinder.LikeController = Ember.ArrayController.extend({
   actions: {
     changeRunningStatus: function() {
       this.toggleProperty('running');
+    },
+
+    like: function(like, user, callback) {
+      chrome.runtime.sendMessage({
+        type: 'request',
+        path: (like ? 'like' : 'dislike') + '/' + user.id
+      }, function(result) {
+        callback(result);
+      });
     }
   }
 });

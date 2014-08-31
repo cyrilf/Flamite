@@ -1,14 +1,36 @@
 .main-side {
   position: fixed;
-  width: 24%;
+  width: 18%;
   height: 100%;
-  background: #444C63;
+  color: #99A0B3;
   text-align: right;
+  background: #444C63;
+
+  .top,
+  .side {
+    padding-right: 32px;
+  }
+
+  .top {
+    background: #4E566E;
+
+    .botinder-logo {
+      display: block;
+      padding: 32px 0 4px;
+      font-family: 'Pacifico';
+      font-size: 2.8em;
+      line-height: 1em;
+      color: #FFCA90;
+    }
+
+    .slogan {
+      font-family: 'Lato';
+      font-size: 0.8em;
+    }
+  }
 
   .side {
-    padding-right: 24px;
-    overflow-y: scroll;
-    color: #fff;
+    overflow-y: auto;
   }
 
   ::-webkit-scrollbar-thumb {
@@ -16,33 +38,25 @@
   }
 }
 
-.botinder-logo {
-  display: block;
-  padding: 12px 28px 0 0;
-  font-family: 'Pacifico';
-  font-size: 2.8em;
-  color: #99A0B3;
-}
-
 .main-menu {
-  margin: 6px 12px 24px;
-
-  li {
-    display: inline-block;
-  }
+  padding: 32px 0;
 
   a {
     display: block;
-    padding: 0 12px;
-    height: 55px;
-    line-height: 55px;
+    height: 34px;
+    line-height: 34px;
     font-family: 'Lato';
     color: #99A0B3;
+
+    &.active {
+      color: #fff;
+    }
   }
 
   .user-photo {
-    width: 42px;
-    height: 42px;
+    margin-right: 6px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     vertical-align: middle;
   }

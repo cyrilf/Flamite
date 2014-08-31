@@ -9,16 +9,13 @@ Botinder.LikeRoute = Ember.Route.extend({
   fetch: function(callback) {
     chrome.runtime.sendMessage({
       type: 'request',
-      path: 'recs',
-      data: {}
+      path: 'recs'
     }, function(obj) {
       var users = [];
 
       for (var i = 0; i < obj.results.length; i++) {
         var _user = obj.results[i];
         var photos = [];
-
-        console.log('_user', _user);
 
         for (var ii = 0; ii < 6; ii++) {
           photos[ii] = _user.photos[ii] ? _user.photos[ii].processedFiles[2].url : false;
@@ -41,8 +38,13 @@ Botinder.LikeRoute = Ember.Route.extend({
     });
   },
 
+  deactivate: function() {
+    this.controllerFor('like').set('running', false);
+  },
+
   actions: {
     getMore: function() {
+      console.log('new ok!..');
       var self = this;
       this.fetch(function(users) {
         self.get('controller').gotMore(users);

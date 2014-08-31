@@ -1,0 +1,31 @@
+.field {
+  padding: 12px 0;
+}
+
+.field-checkbox {
+  label {
+    display: block;
+    cursor: pointer;
+  }
+  label::after {
+    display: inline-block;
+    margin-left: 8px;
+    vertical-align: -2px;
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: transparent;
+    border-radius: 35%;
+    border: 2px solid #99A0B3;
+
+    @include transition(all .2s ease);
+  }
+
+  input[type=checkbox] {
+    display: none;
+  }
+  input[type=checkbox]:checked + label::after {
+    background: #A8FFA5;
+    border-color: #A8FFA5;
+  }
+}

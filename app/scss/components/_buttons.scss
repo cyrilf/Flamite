@@ -1,7 +1,57 @@
-.button-light {
-  padding: 8px 14px;;
-  border: 1px solid #99A0B3;
+.button {
+  border: 1px solid;
   border-radius: 4px;
-  color: #99A0B3;
   background: transparent;
+  outline: none;
+
+  @include transition(all .4s ease);
+}
+
+.button.big {
+  padding: 8px 14px;;
+}
+
+.button.medium {
+  padding: 4px 7px;
+  font-size: 0.8em;
+}
+
+.button.light {
+  border-color: #99A0B3;
+  color: #99A0B3;
+
+  &.active {
+    color: #A8FFA5;
+    border-color: #A8FFA5;
+  }
+}
+
+.button.green {
+  border-color: #72DF95;
+  color: #72DF95;
+
+  &.active {
+    color: #FFF;
+    background: #72DF95;
+  }
+}
+
+.button.red {
+  border-color: #F18080;
+  color: #F18080;
+
+  &.active {
+    color: #FFF;
+    background: #F18080;
+  }
+}
+
+.button.pink {
+  border-color: #DF72C5;
+  color: #DF72C5;
+
+  &.active {
+    color: #FFF;
+    background: #DF72C5;
+  }
 }

@@ -1,10 +1,11 @@
 <div class="main-side">
   <div class="top">
-    {{#link-to 'home' class="botinder-logo"}}Botinder{{/link-to}} 
+    {{#link-to 'home' class="botinder-logo"}}Botinder{{/link-to}}
+    <div class="slogan">a Tinder extension</div>
     <ul class="main-menu">
-      <li>{{#link-to 'like'}}Like{{/link-to}}</li>
-      <li>{{#link-to 'matches'}}Matches{{/link-to}}</li>
-      <li>{{#link-to 'account' class="user-profile"}}<img {{bind-attr src="user.photo" class=":user-photo"}}>{{/link-to}}</li>
+      <li>{{#link-to 'account' class='user-profil :nav-profil'}}<img class="user-photo" {{bind-attr src="user.photo"}}> Profil{{/link-to}}</li>
+      <li>{{#link-to 'like' class=':nav-like'}}Like{{/link-to}}</li>
+      <li>{{#link-to 'matches' class=':nav-matches'}}Matches{{/link-to}}</li>
     </ul>
   </div>
   <div class="side">

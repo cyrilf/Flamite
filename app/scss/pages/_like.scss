@@ -22,7 +22,7 @@
       background-size: cover;
       background-position: center center;
 
-      @include animation(like-item-display 1s ease-in-out forwards);
+      /*@include animation(like-item-display 1s ease-in-out forwards);*/
     }
   }
 
@@ -43,12 +43,16 @@
 
     .username {
       font-family: 'Raleway-Thin';
-      font-size: 2em;
+      font-size: 1.6em;
       color: #333744;
 
       .age {
         color: #737F9E;
       }
+    }
+
+    .actions {
+      margin: 12px 0;
     }
 
     .min-title {
@@ -60,5 +64,9 @@
       font-size: 0.8em;
       color: #5D6783;
     }
+  }
+
+  .options {
+    padding: 32px 0;
   }
 }
