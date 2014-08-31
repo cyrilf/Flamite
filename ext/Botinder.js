@@ -48,6 +48,12 @@ var Botinder = (function() {
           Botinder.Tinder.setToken(localStorage.getItem('tinder_token'));
         }
 
+        // user
+        var user = localStorage.getItem('user');
+        if (user) {
+          Botinder.user = JSON.parse(user);
+        }
+
         // listen Chrome event
         chromeEvent();
 

@@ -71,7 +71,15 @@ Botinder.Tinder = (function(Botinder) {
             if (data) {
               data.messages = match.messages;
               data.last_activity_date = match.last_activity_date;
-              data.new_data = true;
+
+              // last message
+              var last_message = match.messages[match.messages.length - 1];
+              if (last_message && last_message.from != Botinder.user._id) {
+                data.new_data = true;
+              } else {
+                data.new_data = false;
+              }
+              
               os.put(data);
             } else {
               os.add(match);
@@ -84,11 +92,11 @@ Botinder.Tinder = (function(Botinder) {
       localStorage.setItem('last_activity_date', obj.matches.length === 0 ? last_activity_date : obj.last_activity_date);
       Botinder.sgl.update_tinder_data_ongo = false;
 
-      callback && callback('done');
+      console.log('up?', (obj.matches.length ? true : false));
+      callback && callback('done', (obj.matches.length ? true : false));
     })
 
     prm.fail(function() {
-
       Botinder.sgl.update_tinder_data_ongo = false;
       callback && callback('fail');
     });
@@ -101,7 +109,6 @@ Botinder.Tinder = (function(Botinder) {
       
       // Tinder request
       if (request.type === 'request') {
-        console.log('request');
         var prm = Botinder.Tinder.request(
           request.path, 
           request.method ? request.method : 'GET', 
@@ -126,8 +133,14 @@ Botinder.Tinder = (function(Botinder) {
 
       // match
       else if (request.type === 'match') {
-        Botinder.db.transaction(['matches']).objectStore('matches').get(request.id).onsuccess = function(event) {
-          sendResponse(event.target.result);
+        var os = Botinder.db.transaction(['matches'], 'readwrite').objectStore('matches');
+        var req = os.get(request.id);
+
+        req.onsuccess = function(e) {
+          var data = e.target.result;
+          data.new_data = false;
+          os.put(data);
+          sendResponse(data);
         };
       }
 
@@ -135,15 +148,18 @@ Botinder.Tinder = (function(Botinder) {
       else if (request.type === 'message_post') {
         Botinder.Tinder.request('user/matches/' + request.id, 'POST', {
           message: request.message
-        }).done(function(obj) {
-          sendResponse(true);
         });
+
+        return false;
       }
 
       // update data
       else if (request.type === 'update') {
-        Botinder.Tinder.updateTinderData(function(status) {
-          sendResponse(status);
+        Botinder.Tinder.updateTinderData(function(status, update) {
+          sendResponse({
+            status: status,
+            update: update
+          });
         });
       }
 

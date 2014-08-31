@@ -10,8 +10,6 @@ Botinder.MatchesMatchController = Ember.Controller.extend({
         type: 'message_post',
         id: match.id,
         message: this.get('message')
-      }, function() {
-        console.log('posted');
       });
     }
   }

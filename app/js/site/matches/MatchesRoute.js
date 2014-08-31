@@ -1,8 +1,16 @@
 Botinder.MatchesRoute = Ember.Route.extend({
-  queryParams: {
-    page: {
-      refreshModel: true
-    }
+  updateEvent: false,
+
+  activate: function() {
+    var self = this;
+
+    this.set('updateEvent', Botinder.Engine.on('update', function() {
+      self.refresh();
+    }));
+  },
+
+  deactivate: function() {
+    this.get('updateEvent').off('update');
   },
 
   renderTemplate: function() {
@@ -20,11 +28,6 @@ Botinder.MatchesRoute = Ember.Route.extend({
       }, function(results) {
         for (var i = 0; i < results.length; i++) {
           var match = results[i];
-          
-          if (!match.person) {
-            console.log('error with match', match._id);
-            continue;
-          }
 
           if (match.person.photos.length > 0) {
             match.id = match._id;

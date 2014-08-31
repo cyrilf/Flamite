@@ -1,15 +1,17 @@
 Botinder.MatchesMatchRoute = Ember.Route.extend({
   timeout: null,
+  updateEvent: false,
   
   activate: function() {
     var self = this;
-    this.set('timeout', setInterval(function() {
+
+    this.set('updateEvent', Botinder.Engine.on('update', function() {
       self.refresh();
-    }, 10000));
+    }));
   },
 
   deactivate: function() {
-    clearTimeout(this.get('timeout'));
+    this.get('updateEvent').off('update');
   },
 
   model: function(params) {

@@ -13,9 +13,12 @@ Botinder.ApplicationController = Ember.Controller.extend({
 
     setInterval(function() {
       self.set('updateOngo', true);
-      chrome.runtime.sendMessage({type: 'update'}, function(status) {
+      chrome.runtime.sendMessage({type: 'update'}, function(res) {
+        if (res.update) {
+          Botinder.Engine.update();
+        }
         self.set('updateOngo', false);
       });
-    }, 15000);
+    }, 4000);
   }
 });

@@ -3,7 +3,7 @@
     {{#each match in model}}
     <li class="item">
       {{#link-to 'matches.match' match._id}}
-        {{match.person.name}} <img {{bind-attr src="match.person.photo"}} class="user-photo">
+        {{#if match.new_data}}<i class="new"></i>{{/if}} {{match.person.name}} <img {{bind-attr src="match.person.photo"}} class="user-photo">
       {{/link-to}}
     </li>
     {{/each}}
