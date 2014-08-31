@@ -3,8 +3,10 @@
   width: 24%;
   height: 100%;
   background: #444C63;
+  text-align: right;
 
   .side {
+    padding-right: 24px;
     overflow-y: scroll;
     color: #fff;
   }
@@ -16,14 +18,14 @@
 
 .botinder-logo {
   display: block;
-  padding: 12px 32px 0 0;
+  padding: 12px 28px 0 0;
   font-family: 'Pacifico';
   font-size: 2.8em;
-  color: #ff7258;
+  color: #99A0B3;
 }
 
 .main-menu {
-  padding-right: 8px;
+  margin: 6px 12px 24px;
 
   li {
     display: inline-block;

@@ -1,7 +1,15 @@
 <table class="like-item">
   <tr>
     <td class="profil">
-      {{user.name}}
+      <div class="wrap">
+        <div class="username">{{user.name}} <span class="age">{{user.age}}</span></div>
+        <div class="info">
+          <div class="min-title">Birthday</div>
+          <div class="min-value">{{user.birth_date}}</div>
+          <div class="min-title">Connection</div>
+          <div class="min-value">{{user.ping_time}}</div>
+        </div>
+      </div>
     </td>
     {{#each photo in user.photos}}
       <td class="photo">

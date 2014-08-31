@@ -1,5 +1,5 @@
 Botinder.LikeController = Ember.ArrayController.extend({
-  delay: 1000,
+  delay: 1500,
   running: false,
   getMore: false,
   displayNb: 0,

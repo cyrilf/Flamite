@@ -18,13 +18,21 @@ Botinder.LikeRoute = Ember.Route.extend({
         var _user = obj.results[i];
         var photos = [];
 
+        console.log('_user', _user);
+
         for (var ii = 0; ii < 6; ii++) {
-          photos[ii] = _user.photos[ii] ? _user.photos[ii].processedFiles[0].url : false;
+          photos[ii] = _user.photos[ii] ? _user.photos[ii].processedFiles[2].url : false;
         }
+
+        var birth_date = new Date(_user.birth_date);
+        var ping_time = new Date(_user.ping_time);
 
         users.push({
           id: _user._id,
           name: _user.name,
+          age: Botinder.calculateAge(birth_date),
+          birth_date: Botinder.formatDate(birth_date),
+          ping_time: Botinder.formatDate(ping_time, true),
           photos: photos
         });
       }

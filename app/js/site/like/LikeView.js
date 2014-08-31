@@ -9,7 +9,6 @@ Botinder.LikeView = Ember.View.extend({
       classNames: ['photo-container'],
       attributeBindings: ['style'],
       style: function() {
-        console.log('photo', this.get('photo'));
         return 'background-image: url(' + this.get('photo') + ');';
       }.property('photo')
     })
