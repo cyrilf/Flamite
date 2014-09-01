@@ -4,9 +4,9 @@
       <div class="wrap">
         <div class="username">{{user.name}} <span class="age">{{user.age}}</span></div>
         <div class="actions">
-          {{#unless view.match}}
-            <button {{action like 1 target='view'}} {{bind-attr class=':button :medium :green view.liked:active'}}>Like</button>
-            <button {{action like 0 target='view'}} {{bind-attr class=':button :medium :red view.disliked:active'}}>Dislike</button>
+          {{#unless user.match}}
+            <button {{action like 1 target='view'}} {{bind-attr class=':button :medium :green user.liked:active'}}>Like</button>
+            <button {{action like 0 target='view'}} {{bind-attr class=':button :medium :red user.disliked:active'}}>Dislike</button>
           {{else}}
             {{#link-to 'matches.match' view.match}}<button class="button medium pink active">Match!</button>{{/link-to}}
           {{/unless}}
@@ -22,7 +22,7 @@
     {{#each photo in user.photos}}
       <td class="photo">
         {{#if photo}}
-          {{view view.photoView photoBinding=photo}}
+          <a {{bind-attr href=photo.big}} target="_blank">{{view view.photoView photoBinding=photo}}</a>
         {{/if}}
       </td>
     {{/each}}

@@ -3,31 +3,27 @@ Botinder.LikeView = Ember.View.extend({
     tagName: 'div',
     classNames: ['item'],
     templateName: 'like.item',
-    liked: false,
-    disliked: false,
-    likeOptions: true,
-    match: false,
 
     like: function(like) {
       var self = this;
 
-      if (!this.get('likeOptions')) {
+      if (this.get('user.disableLike')) {
         return;
       }
 
       if (like) {
-        this.set('liked', true);
+        this.set('user.liked', true);
       } else {
-        this.set('disliked', true);
+        this.set('user.disliked', true);
       }
 
       this.get("controller").send('like', like, this.get('user'), function(result) {
         if (result.match) {
-          self.set('match', result.match._id);
+          self.set('user.match', result.match._id);
         }
       });
       
-      this.set('likeOptions', false);
+      this.set('user.disableLike', true);
     },
 
     didInsertElement: function() {
@@ -41,7 +37,7 @@ Botinder.LikeView = Ember.View.extend({
       classNames: ['photo-container'],
       attributeBindings: ['style'],
       style: function() {
-        return 'background-image: url(' + this.get('photo') + ');';
+        return 'background-image: url(' + this.get('photo.small') + ');';
       }.property('photo')
     })
   }),
