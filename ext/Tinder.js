@@ -3,8 +3,8 @@
  */
 
 Botinder.Tinder = (function(Botinder) {
-  var token = null;
-  var stop = false;
+  var token = false;
+  var updateOngo = false;
 
   function request(path, method, data) {
     return $.ajax({
@@ -13,13 +13,8 @@ Botinder.Tinder = (function(Botinder) {
       data: data,
       beforeSend: function(request) {
         if (path !== 'auth') {
-          request.setRequestHeader('X-Auth-Token', localStorage.getItem('tinder_token'));
+          request.setRequestHeader('X-Auth-Token', token);
         }
-      }
-    }).fail(function(res) {
-      if (res.status == 401 && !stop) {
-        stop = true;
-        Botinder.Facebook.openAuthTab();
       }
     });
   }
@@ -27,27 +22,31 @@ Botinder.Tinder = (function(Botinder) {
   function auth(facebook_token) {
     return this.request('auth', 'POST', {
       facebook_token: facebook_token
-    }).done(function() {
-      stop = false;
     });
   }
 
   function setToken(_token) {
+    localStorage.setItem('tinder_token', _token);
     token = _token;
+  }
+
+  function getToken() {
+    return token;
   }
 
   function updateTinderData(callback) {
     var last_update = localStorage.getItem('last_update');
     var last_activity_date = localStorage.getItem('last_activity_date');
+    var user = Botinder.getUser();
 
     // check if update is allow
-    if (Botinder.sgl.update_tinder_data_ongo || last_update > (new Date().getTime() - 5000)) {
+    if (updateOngo || last_update > (new Date().getTime() - 5000)) {
       callback && callback(false);
       return false;
     }
 
     // set settings
-    Botinder.sgl.update_tinder_data_ongo = true;
+    updateOngo = true;
     localStorage.setItem('last_update', new Date().getTime());
 
     // make Tinder update request
@@ -74,7 +73,7 @@ Botinder.Tinder = (function(Botinder) {
 
               // last message
               var last_message = match.messages[match.messages.length - 1];
-              if (last_message && last_message.from != Botinder.user._id) {
+              if (last_message && last_message.from != user._id) {
                 data.new_data = true;
               } else {
                 data.new_data = false;
@@ -90,13 +89,13 @@ Botinder.Tinder = (function(Botinder) {
 
       // set settings
       localStorage.setItem('last_activity_date', obj.matches.length === 0 ? last_activity_date : obj.last_activity_date);
-      Botinder.sgl.update_tinder_data_ongo = false;
+      updateOngo = false;
 
       callback && callback('done', (obj.matches.length ? true : false));
     })
 
     prm.fail(function() {
-      Botinder.sgl.update_tinder_data_ongo = false;
+      updateOngo = false;
       callback && callback('fail');
     });
 
@@ -168,11 +167,13 @@ Botinder.Tinder = (function(Botinder) {
 
   return {
     init: function() {
+      token = localStorage.getItem('tinder_token');
       chromeEvent();
     },
     request: request,
     auth: auth,
     setToken: setToken,
+    getToken: getToken,
     updateTinderData: updateTinderData
   };
 })(Botinder);

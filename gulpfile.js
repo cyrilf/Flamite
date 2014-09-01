@@ -49,7 +49,8 @@ gulp.task('build', function() {
     return gulp.src([
       './app/img/**/*',
       './app/fonts/**/*',
-      './app/index.html',
+      './app/*.html',
+      './app/js/welcome.js',
       './ext/**/*',
       './manifest.json',
       './icons/*'
@@ -64,7 +65,7 @@ gulp.task('watch', function() {
     './app/js/**/*',
     './app/hbs/**/*',
     './app/fonts/**/*',
-    './app/index.html',
+    './app/*.html',
     './ext/**/*',
     './manifest.json',
     './icons/*'

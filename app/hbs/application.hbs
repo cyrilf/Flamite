@@ -3,8 +3,8 @@
     {{#link-to 'home' class="botinder-logo"}}Botinder{{/link-to}}
     <div class="slogan">a Tinder extension</div>
     <ul class="main-menu">
-      <li>{{#link-to 'account' class='user-profil :nav-profil'}}<img class="user-photo" {{bind-attr src="user.photo"}}> Profil{{/link-to}}</li>
-      <li>{{#link-to 'like' class=':nav-like'}}Like{{/link-to}}</li>
+      <li><img class="user-photo" {{bind-attr src="user.photo"}}> {{user.name}}</li>
+      <li>{{#link-to 'like' class=':nav-like'}}Booster{{/link-to}}</li>
       <li>{{#link-to 'matches' class=':nav-matches'}}Matches{{/link-to}}</li>
     </ul>
   </div>

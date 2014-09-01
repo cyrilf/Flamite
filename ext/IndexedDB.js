@@ -5,7 +5,7 @@
 Botinder.IndexedDB = (function(Botinder) {
   Botinder.db = null;
 
-  function initDatabase(callback) {
+  function init(callback) {
     var request = indexedDB.open('botinder', 11);
     var upgradeneeded = false;
 
@@ -60,7 +60,7 @@ Botinder.IndexedDB = (function(Botinder) {
   }
 
   return {
-    initDatabase: initDatabase,
+    init: init,
     getMatches: getMatches
   };
 })(Botinder);

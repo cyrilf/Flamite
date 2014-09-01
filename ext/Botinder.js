@@ -3,36 +3,79 @@
  */
 
 var Botinder = (function() {
-  var sgl = {
-    update_tinder_data_ongo: false
-  };
+  var user = null;
 
-  function openAppTab() {
-    chrome.tabs.create({
-      url : '/app/index.html'
-    });
+  function openAppTab(tabId) {
+    if (tabId) {
+      chrome.tabs.update(tabId, {
+        url: '/app/index.html'
+      });
+    } else {
+      chrome.tabs.create({
+        url : '/app/index.html'
+      });
+    }
   }
 
-  function updateTabToApp(tabId) {
-    chrome.tabs.update(tabId, {
-      url: '/app/index.html'
-    });
+  function openWelcomeTab(tabId) {
+    if (tabId) {
+      chrome.tabs.update(tabId, {
+        url: '/app/welcome.html'
+      });
+    } else {
+      chrome.tabs.create({
+        url : '/app/welcome.html'
+      });
+    }
+  }
+
+  function setUser(_user) {
+
+    localStorage.setItem('user', JSON.stringify(_user));
+    user = _user;
+  }
+
+  function getUser() {
+    return user;
   }
 
   function chromeEvent() {
     chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+
+      // get user account
       if (request.type === 'user') {
         sendResponse(JSON.parse(localStorage.getItem('user')));
+      }
+
+      // open Facebook auth tab
+      else if (request.type === 'openFacebookAuthTab') {
+        Botinder.Facebook.openAuthTab(sender.tab.id);
+      }
+    });
+
+    // listen Botinder button
+    chrome.browserAction.onClicked.addListener(function(tab) {
+
+      // if Tinder token get update
+      if (Botinder.Tinder.getToken()) {
+        openAppTab();
+      }
+
+      // else open Facebook auth tab
+      else {
+        openWelcomeTab();
       }
     });
   }
 
   return {
-    sgl: sgl,
-    updateTabToApp: updateTabToApp,
     openAppTab: openAppTab,
+    openWelcomeTab: openWelcomeTab,
+    setUser: setUser,
+    getUser: getUser,
+    user: user,
     init: function() {
-      Botinder.IndexedDB.initDatabase(function(result) {
+      Botinder.IndexedDB.init(function(result) {
 
         // init
         Botinder.Tinder.init();
@@ -44,39 +87,18 @@ var Botinder = (function() {
           localStorage.removeItem('last_update');
           localStorage.removeItem('tinder_token');
           localStorage.removeItem('user');
-        } else {
-          Botinder.Tinder.setToken(localStorage.getItem('tinder_token'));
+
+          Botinder.Tinder.setToken(null);
         }
 
         // user
         var user = localStorage.getItem('user');
         if (user) {
-          Botinder.user = JSON.parse(user);
+          setUser(JSON.parse(user));
         }
 
         // listen Chrome event
         chromeEvent();
-
-        // listen Botinder button
-        chrome.browserAction.onClicked.addListener(function(tab) {
-
-          // if Tinder token get update
-          if (localStorage.getItem('tinder_token')) {
-            var prm = Botinder.Tinder.updateTinderData();
-            if (prm) {
-              prm.done(function() {
-                openAppTab();
-              }).fail(function() {
-                Botinder.Facebook.openAuthTab();
-              });
-            }
-          } 
-
-          // else open Facebook auth tab
-          else {
-            Botinder.Facebook.openAuthTab();
-          }
-        });
       });
     }
   };

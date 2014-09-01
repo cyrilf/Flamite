@@ -1,0 +1,31 @@
+.page-welcome {
+  background: #4E566E;
+
+  .container-middle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 300px;
+    text-align: center;
+  }
+
+  .message-mega {
+    font-family: 'Pacifico';
+    font-size: 4.2em;
+    line-height: 1em;
+    color: #FFCA90;
+  }
+
+  .explain {
+    margin: 42px 0;
+    color: #A7ADC0;
+  }
+
+  big {
+    font-size: 1.2em;
+    color: #DFE2EB;
+  }
+}
