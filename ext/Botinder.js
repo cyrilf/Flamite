@@ -30,7 +30,6 @@ var Botinder = (function() {
   }
 
   function setUser(_user) {
-
     localStorage.setItem('user', JSON.stringify(_user));
     user = _user;
   }

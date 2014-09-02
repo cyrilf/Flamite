@@ -154,6 +154,11 @@ Botinder.Tinder = (function(Botinder) {
       // update data
       else if (request.type === 'update') {
         Botinder.Tinder.updateTinderData(function(status, update) {
+
+          if (status == 'fail') {
+            Botinder.openWelcomeTab(sender.tab.id);
+          }
+
           sendResponse({
             status: status,
             update: update
