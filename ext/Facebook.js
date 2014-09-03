@@ -4,14 +4,16 @@
 
 Botinder.Facebook = (function(Botinder) {
 
-  function facebookAuthSuccess(facebookToken, tabId) {
-    Botinder.Tinder.auth(facebookToken).done(function(result) {
+  function facebookAuthSuccess(facebook_token, tabId) {
+    Botinder.Tinder.request('auth', 'POST', {
+      facebook_token: facebook_token
+    }, {
+      tabId: tabId
+    }).done(function(result) {
       Botinder.setUser(result.user);
       Botinder.Tinder.setToken(result.token);
       Botinder.openAppTab(tabId);
-    }).fail(function(res) {
-      Botinder.openWelcomeTab(tabId);
-    });;
+    });
   }
 
   function openAuthTab(tabId) {

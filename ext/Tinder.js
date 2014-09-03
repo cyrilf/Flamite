@@ -6,7 +6,7 @@ Botinder.Tinder = (function(Botinder) {
   var token = false;
   var updateOngo = false;
 
-  function request(path, method, data) {
+  function request(path, method, data, options) {
     return $.ajax({
       url: 'https://api.gotinder.com/' + path,
       type: method,
@@ -16,12 +16,10 @@ Botinder.Tinder = (function(Botinder) {
           request.setRequestHeader('X-Auth-Token', token);
         }
       }
-    });
-  }
-
-  function auth(facebook_token) {
-    return this.request('auth', 'POST', {
-      facebook_token: facebook_token
+    }).fail(function(error) {
+      if (error.status == 401) {
+        Botinder.openWelcomeTab(options ? options.tabId : null);
+      }
     });
   }
 
@@ -37,12 +35,13 @@ Botinder.Tinder = (function(Botinder) {
   function updateTinderData(callback) {
     var last_update = localStorage.getItem('last_update');
     var last_activity_date = localStorage.getItem('last_activity_date');
+
     var user = Botinder.getUser();
 
     // check if update is allow
-    if (updateOngo || last_update > (new Date().getTime() - 5000)) {
-      callback && callback(false);
-      return false;
+    if (updateOngo || last_update > (new Date().getTime() - 2000)) {
+      callback(false);
+      return;
     }
 
     // set settings
@@ -91,15 +90,13 @@ Botinder.Tinder = (function(Botinder) {
       localStorage.setItem('last_activity_date', obj.matches.length === 0 ? last_activity_date : obj.last_activity_date);
       updateOngo = false;
 
-      callback && callback('done', (obj.matches.length ? true : false));
+      callback('done', (obj.matches.length ? true : false));
     })
 
     prm.fail(function() {
       updateOngo = false;
-      callback && callback('fail');
+      callback('fail');
     });
-
-    return prm;
   }
 
   function chromeEvent() {
@@ -153,7 +150,7 @@ Botinder.Tinder = (function(Botinder) {
 
       // update data
       else if (request.type === 'update') {
-        Botinder.Tinder.updateTinderData(function(status, update) {
+        updateTinderData(function(status, update) {
 
           if (status == 'fail') {
             Botinder.openWelcomeTab(sender.tab.id);
@@ -176,9 +173,7 @@ Botinder.Tinder = (function(Botinder) {
       chromeEvent();
     },
     request: request,
-    auth: auth,
     setToken: setToken,
-    getToken: getToken,
-    updateTinderData: updateTinderData
+    getToken: getToken
   };
 })(Botinder);
