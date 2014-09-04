@@ -13,7 +13,7 @@ Botinder.formatDate = function(date, time) {
     hours = hours < 10 ? '0' + hours : hours;
     minutes = minutes < 10 ? '0' + minutes : minutes;
 
-    return currDate + ' ' + monthName + ' ' + year + (time ? (' ' + hours + ':' + minutes) : '');
+    return currDate + ' ' + monthName + ' ' + year + (time ? (', ' + hours + ':' + minutes) : '');
 };
 
 function getMonthName(month) {

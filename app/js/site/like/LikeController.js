@@ -14,7 +14,7 @@ Botinder.LikeController = Ember.ArrayController.extend({
     var displayNb = this.get('displayNb');
 
     // check running status
-    if (!this.get('running') || this.get('getMore')) {
+    if (this.get('getMore')) {
       return;
     }
 
@@ -37,9 +37,11 @@ Botinder.LikeController = Ember.ArrayController.extend({
     this.set('users', users);
     this.set('displayNb', displayNb + 1);
 
-    setTimeout(function(context) {
-      context.renderUser.call(context);
-    }, this.get('delay'), this);
+    if (this.get('running')) {
+      setTimeout(function(context) {
+        context.renderUser.call(context);
+      }, this.get('delay'), this);
+    }
   },
 
   runningChanged: function() {
@@ -54,6 +56,16 @@ Botinder.LikeController = Ember.ArrayController.extend({
     this.renderUser();
   },
 
+  init: function() {
+    var self = this;
+
+    this._super();
+
+    setTimeout(function() {
+      self.renderUser();
+    }, 1000);
+  },
+
   actions: {
     changeRunningStatus: function() {
       this.toggleProperty('running');
@@ -66,6 +78,10 @@ Botinder.LikeController = Ember.ArrayController.extend({
       }, function(result) {
         callback(result);
       });
+
+      if (!this.get('running')) {
+        this.renderUser();
+      }
     }
   }
 });

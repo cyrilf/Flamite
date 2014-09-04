@@ -5,6 +5,7 @@
 Botinder.Tinder = (function(Botinder) {
   var token = false;
   var updateOngo = false;
+  var last_update = null;
 
   function request(path, method, data, options) {
     return $.ajax({
@@ -33,20 +34,18 @@ Botinder.Tinder = (function(Botinder) {
   }
 
   function updateTinderData(callback) {
-    var last_update = localStorage.getItem('last_update');
     var last_activity_date = localStorage.getItem('last_activity_date');
-
     var user = Botinder.getUser();
 
     // check if update is allow
-    if (updateOngo || last_update > (new Date().getTime() - 2000)) {
+    if (updateOngo || (last_update && last_update > (new Date().getTime() - 2000))) {
       callback(false);
       return;
     }
 
     // set settings
     updateOngo = true;
-    localStorage.setItem('last_update', new Date().getTime());
+    last_update = new Date().getTime();
 
     // make Tinder update request
     var prm = Botinder.Tinder.request('updates', 'POST', {
@@ -87,9 +86,8 @@ Botinder.Tinder = (function(Botinder) {
       }
 
       // set settings
-      localStorage.setItem('last_activity_date', obj.matches.length === 0 ? last_activity_date : obj.last_activity_date);
       updateOngo = false;
-
+      localStorage.setItem('last_activity_date', obj.matches.length ? obj.last_activity_date : last_activity_date);
       callback('done', (obj.matches.length ? true : false));
     })
 

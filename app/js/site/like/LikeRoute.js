@@ -37,6 +37,8 @@ Botinder.LikeRoute = Ember.Route.extend({
           age: Botinder.calculateAge(birth_date),
           birth_date: Botinder.formatDate(birth_date),
           ping_time: Botinder.formatDate(ping_time, true),
+          distance_km: Math.round(_user.distance_mi * 1.609),
+          distance_mi: _user.distance_mi,
           photos: photos
         });
       }
@@ -51,7 +53,6 @@ Botinder.LikeRoute = Ember.Route.extend({
 
   actions: {
     getMore: function() {
-      console.log('new ok!..');
       var self = this;
       this.fetch(function(users) {
         self.get('controller').gotMore(users);
