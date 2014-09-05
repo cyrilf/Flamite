@@ -3,8 +3,7 @@ var Botinder = Ember.Application.create({
 });
 
 Botinder.Router.map(function() {
-  this.route('home', {path: '/'});
-  this.route('like');
+  this.route('like', {path: '/'});
   this.resource('matches', function() {
     this.route('match', {path: '/:match_id'});
   });

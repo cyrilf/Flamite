@@ -4,6 +4,15 @@
       {{input type="checkbox" name="likeAuto" id="field-like" checked=likeAuto}}
       <label for="field-like">Like automatically</label>
     </div>
+    <div class="field">
+      <label for="field-delay">Speed</label>
+      <select id="field-delay" class="delay-select field-select" {{action "changeDelay" on="change"}}>
+        <option value="3200">slow</option>
+        <option value="1500" selected>normal</option>
+        <option value="900">speed</option>
+        <option value="600">booster!</option>
+      </select>
+    </div>
     <button {{action 'changeRunningStatus'}} {{bind-attr class=':button :big :light running:active'}}>{{start}}</button>
   </div>
 </div>

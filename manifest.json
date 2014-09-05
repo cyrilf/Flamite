@@ -1,6 +1,6 @@
 {
     "name"              : "Botinder",
-    "version"           : "1.0.1",
+    "version"           : "1.2.1",
     "manifest_version"  : 2,
     "description"       : "a Tinder extension",
     "permissions"       : ["tabs", "storage", "https://api.gotinder.com/*"],

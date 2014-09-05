@@ -4,6 +4,7 @@ Botinder.LikeController = Ember.ArrayController.extend({
   getMore: false,
   displayNb: 0,
   users: [],
+  likeAuto: false,
 
   start: function() {
     return this.get('running') ? 'Break!' : 'Start!';
@@ -82,6 +83,10 @@ Botinder.LikeController = Ember.ArrayController.extend({
       if (!this.get('running')) {
         this.renderUser();
       }
+    },
+
+    changeDelay: function() {
+      this.set('delay', $('.delay-select').val());
     }
   }
 });
