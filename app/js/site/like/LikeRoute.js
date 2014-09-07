@@ -35,7 +35,6 @@ Botinder.LikeRoute = Ember.Route.extend({
           id: _user._id,
           name: _user.name,
           age: Botinder.calculateAge(birth_date),
-          birth_date: Botinder.formatDate(birth_date),
           ping_time: Botinder.formatDate(ping_time, true),
           distance_km: Math.round(_user.distance_mi * 1.609),
           distance_mi: _user.distance_mi,

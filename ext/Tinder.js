@@ -15,6 +15,9 @@ Botinder.Tinder = (function(Botinder) {
       beforeSend: function(request) {
         if (path !== 'auth') {
           request.setRequestHeader('X-Auth-Token', token);
+          request.setRequestHeader('os-version', 19);
+          request.setRequestHeader('app-version', 759);
+          request.setRequestHeader('platform', 'android');
         }
       }
     }).fail(function(error) {
@@ -98,6 +101,17 @@ Botinder.Tinder = (function(Botinder) {
   }
 
   function chromeEvent() {
+
+    // edit user-agent for api
+    chrome.webRequest.onBeforeSendHeaders.addListener(function(details) {
+      for (var i = 0; i < details.requestHeaders.length; ++i) {
+        if (details.requestHeaders[i].name === 'User-Agent') {
+          details.requestHeaders[i].value = 'Tinder Android Version 3.2.1';
+        }
+      }
+      return {requestHeaders: details.requestHeaders};
+    }, {urls: ["*://api.gotinder.com/*"]}, ["blocking", "requestHeaders"]);
+
     chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
       
       // Tinder request

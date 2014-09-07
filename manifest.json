@@ -1,9 +1,15 @@
 {
     "name"              : "Botinder",
-    "version"           : "1.2.1",
+    "version"           : "1.2.3",
     "manifest_version"  : 2,
     "description"       : "a Tinder extension",
-    "permissions"       : ["tabs", "storage", "https://api.gotinder.com/*"],
+    "permissions"       : [
+      "tabs", 
+      "storage", 
+      "webRequest",
+      "webRequestBlocking",
+      "https://api.gotinder.com/*"
+    ],
     "content_security_policy": "script-src 'self' https://api.gotinder.com 'unsafe-eval'; object-src 'self'",
     "browser_action": {
       "default_icon": "icons/icon.png",
@@ -27,9 +33,15 @@
     "content_scripts" : [
         {
             "matches"       : ["https://www.facebook.com/v2.0/dialog/oauth*"],
-            "include_globs" : ["*464891386855067*redirect_uri=fbconnect%3A%2F%2Fsuccess*", "*redirect_uri=fbconnect%3A%2F%2Fsuccess*464891386855067*"],
+            "include_globs" : [
+              "*464891386855067*redirect_uri=fbconnect%3A%2F%2Fsuccess*", 
+              "*redirect_uri=fbconnect%3A%2F%2Fsuccess*464891386855067*"
+            ],
             "run_at"        : "document_start",
-            "js"            : ["vendor/jquery.min.js", "ext/facebookAuth.js"],
+            "js"            : [
+              "vendor/jquery.min.js",
+              "ext/facebookAuth.js"
+            ],
             "css"           : ["ext/facebookAuth.css"]
         }
     ]
