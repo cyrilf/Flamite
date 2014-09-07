@@ -37,12 +37,14 @@
       overflow-y: scroll;
 
       .item {
+        display: table;
         margin: 8px 12px;
         overflow: hidden;
       }
 
       .photo-container {
-        float: left;
+        display: table-cell;
+        vertical-align: top;
       }
       .user-photo {
         width: 32px;
@@ -51,9 +53,9 @@
       }
 
       .message {
-        float: left;
-        padding: 4px 0;
-        margin-left: 12px;
+        display: table-cell;
+        vertical-align: top;
+        padding: 4px 0 4px 12px;
         color: #53565F;
       }
     }

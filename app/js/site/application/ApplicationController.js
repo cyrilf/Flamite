@@ -1,10 +1,6 @@
 Botinder.ApplicationController = Ember.Controller.extend({
   user: null,
 
-  activated: function() {
-    console.log('act');
-  },
-  
   init: function() {
     this.set('user', Botinder.User);
 
