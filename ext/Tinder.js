@@ -4,7 +4,7 @@
 
 Botinder.Tinder = (function(Botinder) {
   var token = false;
-  var updateOngo = false;
+  var updated = false;
   var last_update = null;
 
   function request(path, method, data, options) {
@@ -41,13 +41,13 @@ Botinder.Tinder = (function(Botinder) {
     var user = Botinder.getUser();
 
     // check if update is allow
-    if (updateOngo || (last_update && last_update > (new Date().getTime() - 2000))) {
+    if (updated || (last_update && last_update > (new Date().getTime() - 2000))) {
       callback(false);
       return;
     }
 
     // set settings
-    updateOngo = true;
+    updated = true;
     last_update = new Date().getTime();
 
     // make Tinder update request
@@ -56,6 +56,7 @@ Botinder.Tinder = (function(Botinder) {
     })
 
     prm.done(function(obj) {
+      var matchsNb = obj.matches.length;
 
       // save all new matches
       for (var i in obj.matches) {
@@ -69,7 +70,7 @@ Botinder.Tinder = (function(Botinder) {
             var data = e.target.result;
 
             if (data) {
-              data.messages = match.messages;
+              data.messages = data.messages.concat(match.messages);
               data.last_activity_date = match.last_activity_date;
 
               // last message
@@ -79,23 +80,31 @@ Botinder.Tinder = (function(Botinder) {
               } else {
                 data.new_data = false;
               }
-              
+
               os.put(data);
             } else {
               os.add(match);
+            }
+
+            // refresh view
+            if (matchsNb == (i + 1)) {
+              callback('done', true);
             }
           };
         })(match, i);
       }
 
+      if (matchsNb == 0) {
+        callback('done', false);
+      }
+
       // set settings
-      updateOngo = false;
-      localStorage.setItem('last_activity_date', obj.matches.length ? obj.last_activity_date : last_activity_date);
-      callback('done', (obj.matches.length ? true : false));
+      updated = false;
+      localStorage.setItem('last_activity_date', obj.last_activity_date);
     })
 
     prm.fail(function() {
-      updateOngo = false;
+      updated = false;
       callback('fail');
     });
   }

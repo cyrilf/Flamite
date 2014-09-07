@@ -1,0 +1,42 @@
+.page-profile {
+  .user {
+    position: relative;
+    margin: 24px auto;
+    padding: 12px;
+    width: 640px;
+  }
+
+  .username {
+    margin: 24px 0;
+    font-family: 'Raleway-Regular';
+    font-size: 3.2em;
+    color: #4E566E;
+    text-align: center;
+
+    .age {
+      font-family: 'Raleway-Thin';
+      color: #99A0B3;
+    }
+  }
+
+  .min-title {
+    margin-top: 16px;
+    font-size: 0.7em;
+    text-transform: uppercase;
+    color: #99A0B3;
+  }
+  .min-value {
+    margin-top: 4px; 
+    font-size: 1em;
+    color: #5C6377;
+  }
+
+  .photos {
+    margin: 1px auto;
+    width: 640px;
+  }
+
+  .photo-container {
+    margin: 24px auto;
+  }
+}

@@ -5,7 +5,7 @@ Botinder.LikeRoute = Ember.Route.extend({
       outlet: 'side'
     });
   },
-
+  
   fetch: function(callback) {
     chrome.runtime.sendMessage({
       type: 'request',

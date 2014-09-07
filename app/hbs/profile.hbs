@@ -1,0 +1,18 @@
+<div class="page-profile">
+  <header class="user">
+    <div class="username">{{model.name}} <span class="age">{{model.age}}</span></div>
+    <div class="min-title">Distance</div>
+    <div class="min-value">{{model.distance_mi}} miles ({{model.distance_km}} km)</div>
+    <div class="min-title">Connection</div>
+    <div class="min-value">{{model.ping_time}}</div>
+    <div class="min-title">Bio</div>
+    <div class="min-value">{{model.bio}}</div>
+  </header>
+  <section class="photos">
+    {{#each photo in model.photos}}
+      <div class="photo-container">
+        <img {{bind-attr src=photo.big}}>
+      </div>
+    {{/each}}
+  </section>
+</div>

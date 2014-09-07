@@ -8,7 +8,7 @@
             <button {{action like 1 target='view'}} {{bind-attr class=':button :medium :green user.liked:active'}}>Like</button>
             <button {{action like 0 target='view'}} {{bind-attr class=':button :medium :red user.disliked:active'}}>Dislike</button>
           {{else}}
-            {{#link-to 'matches.match' view.match}}<button class="button medium pink active">Match!</button>{{/link-to}}
+            {{#link-to 'matches.match' user.matchId}}<button class="button medium pink active">Match!</button>{{/link-to}}
           {{/unless}}
         </div>
         <div class="info">
@@ -22,7 +22,7 @@
     {{#each photo in user.photos}}
       <td class="photo">
         {{#if photo}}
-          <a {{bind-attr href=photo.big}} target="_blank">{{view view.photoView photoBinding=photo}}</a>
+          {{#link-to 'profile' user.id}}{{view view.photoView photoBinding=photo}}{{/link-to}}
         {{/if}}
       </td>
     {{/each}}

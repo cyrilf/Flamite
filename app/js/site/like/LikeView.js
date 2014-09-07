@@ -19,7 +19,7 @@ Botinder.LikeView = Ember.View.extend({
 
       this.get("controller").send('like', like, this.get('user'), function(result) {
         if (result.match) {
-          self.set('user.match', result.match._id);
+          self.set('user.matchId', result.match._id);
         }
       });
       
@@ -28,7 +28,7 @@ Botinder.LikeView = Ember.View.extend({
 
     didInsertElement: function() {
       if (this.get('controller.running') && this.get('controller.likeAuto')) {
-        this.like(1);
+        this.like(true);
       }
     },
 

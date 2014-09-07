@@ -19,32 +19,51 @@ Botinder.MatchesMatchRoute = Ember.Route.extend({
       chrome.runtime.sendMessage({
         type: 'match',
         id: params.match_id
-      }, function(match) {
-        var matchResponse = {
-          id: match._id,
-          user: match.person,
-          created_date: match.created_date,
-          last_activity_date: match.last_activity_date,
-          messages: []
+      }, function(_match) {
+        var _user = _match.person;
+
+        // dates
+        var birth_date = new Date(_user.birth_date);
+        var created_date = new Date(_match.created_date);
+
+        var person = {
+          id: _user._id,
+          name: _user.name,
+          age: Botinder.calculateAge(birth_date),
+          photo: _user.photos[0].processedFiles[3].url
         };
 
-       for (var i = 0; i < match.messages.length; i++) {
-          var message = match.messages[i];
+        var messages = [];
+        for (var i = 0; i < _match.messages.length; i++) {
+          var message = _match.messages[i];
 
-          if (message.from == match.person._id) {
-            var from = match.person;
+          if (message.from == Botinder.user._id) {
+            var author = {
+              name: Botinder.user.name,
+              photo: Botinder.user.photo
+            };
           } else {
-            var from = Botinder.User;
+            var author = {
+              name: person.name,
+              photo: person.photo
+            };
           }
 
-          matchResponse.messages.push({
+          messages.push({
             timestamp: message.timestamp,
-            message: message.message,
-            user: from
+            content: message.message,
+            author: author
           });
         }
 
-        resolve(matchResponse);
+        var match = {
+          id: _match._id,
+          person: person,
+          created_date: Botinder.formatDate(created_date, true),
+          messages: messages
+        };
+
+        resolve(match);
       });
     });
   }

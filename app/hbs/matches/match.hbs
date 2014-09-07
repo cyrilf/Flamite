@@ -1,18 +1,23 @@
 <div class="match">
   <div class="profil">
     <div class="wrap">
-      {{model.id}} - user: {{model.user.name}}
+      {{#link-to 'profile' model.person.id}}
+        <img {{bind-attr src="model.person.photo"}} class="user-photo">
+        <span class="username">{{model.person.name}} <span class="age">{{model.person.age}}</span></span>
+      {{/link-to}}
+      <span class="informations">Since {{model.created_date}}</span>
     </div>
   </div>
   <ul class="messages">
     {{#each message in model.messages}}
       <li class="item">
-        {{message.user.name}}: {{message.message}}
+        <div class="photo-container"><img {{bind-attr src="message.author.photo"}} class="user-photo"></div>
+        <div class="message">{{message.content}}</div>
       </li>
     {{/each}}
   </ul>
-  <form class="message" {{action "submit" on="submit"}}>
-    {{textarea value=message}}
-    <button type="submit">Envoyer</button>
+  <form class="write" {{action "submit" on="submit"}}>
+    {{textarea class="message-field" value=message placeholder="Write here..."}}
+    <button type="submit" class="button post">Post!</button>
   </form>
 </div>

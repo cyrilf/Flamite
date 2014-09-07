@@ -1,5 +1,5 @@
 Botinder.MatchesMatchController = Ember.Controller.extend({
-  needs: ['matches'],
+  needs: ['matches', 'application'],
   message: '',
   
   actions: {
@@ -11,6 +11,8 @@ Botinder.MatchesMatchController = Ember.Controller.extend({
         id: match.id,
         message: this.get('message')
       });
+
+      this.set('message', '');
     }
   }
 });
