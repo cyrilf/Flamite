@@ -36,7 +36,7 @@ Botinder.Tinder = (function(Botinder) {
     return token;
   }
 
-  function updateTinderData(callback) {
+  function updateTinderData(tabId, callback) {
     var last_activity_date = localStorage.getItem('last_activity_date');
     var user = Botinder.getUser();
 
@@ -53,7 +53,9 @@ Botinder.Tinder = (function(Botinder) {
     // make Tinder update request
     var prm = Botinder.Tinder.request('updates', 'POST', {
       last_activity_date: last_activity_date ? last_activity_date : ''
-    })
+    }, {
+      tabId: tabId
+    });
 
     prm.done(function(obj) {
       var matchsNb = obj.matches.length;
@@ -128,7 +130,8 @@ Botinder.Tinder = (function(Botinder) {
         var prm = Botinder.Tinder.request(
           request.path, 
           request.method ? request.method : 'GET', 
-          request.data ? request.data : {}
+          request.data ? request.data : {},
+          {tabId: sender.tab.id}
         );
 
         prm.done(function(obj) {
@@ -171,12 +174,7 @@ Botinder.Tinder = (function(Botinder) {
 
       // update data
       else if (request.type === 'update') {
-        updateTinderData(function(status, update) {
-
-          if (status == 'fail') {
-            Botinder.openWelcomeTab(sender.tab.id);
-          }
-
+        updateTinderData(sender.tab.id, function(status, update) {
           sendResponse({
             status: status,
             update: update

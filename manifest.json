@@ -1,10 +1,9 @@
 {
     "name"              : "Botinder",
-    "version"           : "1.3.5",
+    "version"           : "1.3.6",
     "manifest_version"  : 2,
     "description"       : "a Tinder extension",
     "permissions"       : [
-      "tabs", 
       "storage", 
       "webRequest",
       "webRequestBlocking",
