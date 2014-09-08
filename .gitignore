@@ -3,3 +3,4 @@ bower_components/
 node_modules/
 botinder.sublime-project
 botinder.sublime-workspace
+app/js/config.js

@@ -20,7 +20,7 @@ gulp.task('sass', function () {
 });
 
 gulp.task('scripts', function() {
-  return gulp.src(['./app/js/main.js', './app/js/helpers.js', './app/js/site/**/*.js'])
+  return gulp.src(['./app/js/config.js', './app/js/main.js', './app/js/helpers.js', './app/js/site/**/*.js'])
     .pipe(concat('app.js'))
     .pipe(gulp.dest('./build/app/js/'))
 });

@@ -17,6 +17,8 @@ Botinder.LikeView = Ember.View.extend({
         this.set('user.disliked', true);
       }
 
+      _gaq && _gaq.push(['_trackEvent', 'matches', like ? 'like' : 'dislike']);
+
       this.get("controller").send('like', like, this.get('user'), function(result) {
         if (result.match) {
           self.set('user.matchId', result.match._id);
