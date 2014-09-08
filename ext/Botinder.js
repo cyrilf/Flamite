@@ -38,18 +38,41 @@ var Botinder = (function() {
     return user;
   }
 
+  function resetLocalStorage() {
+    localStorage.removeItem('last_activity_date');
+    localStorage.removeItem('last_update');
+    localStorage.removeItem('tinder_token');
+    localStorage.removeItem('user');
+  }
+
+  function reset() {
+    resetLocalStorage();
+    Botinder.Tinder.setToken(null);
+    Botinder.IndexedDB.reset();
+  }
+
   function chromeEvent() {
     chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
       // get user account
       if (request.type === 'user') {
-        sendResponse(JSON.parse(localStorage.getItem('user')));
+        var user = localStorage.getItem('user');
+
+        if (user) {
+          sendResponse(JSON.parse(localStorage.getItem('user')));
+        } else {
+          openWelcomeTab(sender.tab.id);
+          sendResponse(false);
+        }
       }
 
-      // open Facebook auth tab
-      else if (request.type === 'openFacebookAuthTab') {
-        Botinder.Facebook.openAuthTab(sender.tab.id);
+      if (request.type === 'reset') {
+        reset();
+        openWelcomeTab(sender.tab.id);
+        return false;
       }
+
+      return true;
     });
 
     // listen Botinder button
@@ -82,11 +105,7 @@ var Botinder = (function() {
 
         // reset localstorage if IndexedDB need upgrade
         if (result.upgradeneeded) {
-          localStorage.removeItem('last_activity_date');
-          localStorage.removeItem('last_update');
-          localStorage.removeItem('tinder_token');
-          localStorage.removeItem('user');
-
+          resetLocalStorage();
           Botinder.Tinder.setToken(null);
         }
 

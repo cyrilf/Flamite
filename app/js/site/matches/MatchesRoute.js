@@ -1,16 +1,18 @@
 Botinder.MatchesRoute = Ember.Route.extend({
   updateEvent: false,
+  ts: false,
 
   activate: function() {
     var self = this;
 
-    this.set('updateEvent', Botinder.Engine.on('update', function() {
+    this.set('ts', setInterval(function() {
+      console.log('refresh');
       self.refresh();
-    }));
+    }, 6000));
   },
 
   deactivate: function() {
-    this.get('updateEvent').off('update');
+    clearInterval(this.get('ts'));
   },
 
   renderTemplate: function() {

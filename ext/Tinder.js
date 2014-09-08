@@ -42,7 +42,7 @@ Botinder.Tinder = (function(Botinder) {
 
     // check if update is allow
     if (updated || (last_update && last_update > (new Date().getTime() - 2000))) {
-      callback(false);
+      callback && callback(false);
       return;
     }
 
@@ -89,25 +89,26 @@ Botinder.Tinder = (function(Botinder) {
             }
 
             // refresh view
-            if (matchsNb == (i + 1)) {
-              callback('done', true);
+            if ((matchsNb - 1) == i) {
+              updated = false;
+              callback && callback('done', true);
             }
           };
         })(match, i);
       }
 
       if (matchsNb == 0) {
-        callback('done', false);
+        updated = false;
+        callback && callback('done', false);
       }
 
       // set settings
-      updated = false;
       localStorage.setItem('last_activity_date', obj.last_activity_date);
     })
 
     prm.fail(function() {
       updated = false;
-      callback('fail');
+      callback && callback('fail');
     });
   }
 
@@ -174,12 +175,8 @@ Botinder.Tinder = (function(Botinder) {
 
       // update data
       else if (request.type === 'update') {
-        updateTinderData(sender.tab.id, function(status, update) {
-          sendResponse({
-            status: status,
-            update: update
-          });
-        });
+        updateTinderData(sender.tab.id);
+        return false;
       }
 
       return true;

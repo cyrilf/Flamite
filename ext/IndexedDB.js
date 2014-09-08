@@ -5,24 +5,32 @@
 Botinder.IndexedDB = (function(Botinder) {
   Botinder.db = null;
 
+  function reset(request) {
+    Botinder.db.close();
+    indexedDB.deleteDatabase('botinder');
+    init();
+  }
+
+  function create(db) {
+    // matches
+    if (db.objectStoreNames.contains('matches')) {
+      db.deleteObjectStore('matches');
+    }
+
+    var os = db.createObjectStore('matches', {
+      keyPath: '_id'
+    });
+
+    os.createIndex('last_activity_date', 'last_activity_date', { unique: false });
+  }
+
   function init(callback) {
-    var request = indexedDB.open('botinder', 11);
+    var request = indexedDB.open('botinder', 14);
     var upgradeneeded = false;
 
     request.onupgradeneeded = function(e) {
-      var _db = e.target.result;
       upgradeneeded = true;
-
-      // matches
-      if (_db.objectStoreNames.contains('matches')) {
-        _db.deleteObjectStore('matches');
-      }
-
-      var os = _db.createObjectStore('matches', {
-        keyPath: '_id'
-      });
-
-      os.createIndex('last_activity_date', 'last_activity_date', { unique: false });
+      create(e.target.result);
     };
 
     request.onsuccess = function(e) {
@@ -61,6 +69,7 @@ Botinder.IndexedDB = (function(Botinder) {
 
   return {
     init: init,
+    reset: reset,
     getMatches: getMatches
   };
 })(Botinder);

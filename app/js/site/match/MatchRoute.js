@@ -1,17 +1,19 @@
 Botinder.MatchesMatchRoute = Ember.Route.extend({
   timeout: null,
   updateEvent: false,
+  ts: false,
   
   activate: function() {
     var self = this;
 
-    this.set('updateEvent', Botinder.Engine.on('update', function() {
+    this.set('ts', setInterval(function() {
+      console.log('refresh-2');
       self.refresh();
-    }));
+    }, 6000));
   },
 
   deactivate: function() {
-    this.get('updateEvent').off('update');
+    clearInterval(this.get('ts'));
   },
 
   model: function(params) {
@@ -33,8 +35,11 @@ Botinder.MatchesMatchRoute = Ember.Route.extend({
           photo: _user.photos[0].processedFiles[3].url
         };
 
+        var limit = 60;
+        var offset = _match.messages.length > limit ? _match.messages.length - limit : 0;
+
         var messages = [];
-        for (var i = 0; i < _match.messages.length; i++) {
+        for (var i = offset; i < _match.messages.length; i++) {
           var message = _match.messages[i];
 
           if (message.from == Botinder.user._id) {

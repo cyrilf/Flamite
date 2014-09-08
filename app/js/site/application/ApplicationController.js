@@ -5,11 +5,13 @@ Botinder.ApplicationController = Ember.Controller.extend({
     this.set('user', Botinder.User);
 
     setInterval(function() {
-      chrome.runtime.sendMessage({type: 'update'}, function(res) {
-        if (res.update) {
-          Botinder.Engine.update();
-        }
-      });
-    }, 3000);
+      chrome.runtime.sendMessage({type: 'update'});
+    }, 4000);
+  },
+
+  actions: {
+    reset: function() {
+      chrome.runtime.sendMessage({type: 'reset'});
+    }
   }
 });

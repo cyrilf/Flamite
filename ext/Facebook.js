@@ -30,7 +30,12 @@ Botinder.Facebook = (function(Botinder) {
         if (request.token) {
           facebookAuthSuccess(request.token, sender.tab.id);      
         }
-      } 
+      }
+
+      // open Facebook auth tab
+      else if (request.type === 'openFacebookAuthTab') {
+        openAuthTab(sender.tab.id);
+      }
     });
   }
 

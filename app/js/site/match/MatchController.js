@@ -1,6 +1,13 @@
-Botinder.MatchesMatchController = Ember.Controller.extend({
+Botinder.MatchesMatchController = Ember.Controller.extend(Ember.Evented, {
   needs: ['matches', 'application'],
   message: '',
+
+  modelObs: function() {
+    var self = this;
+    setTimeout(function() {
+      self.trigger('scroll');
+    }, 50);
+  }.observes('model'),
   
   actions: {
     submit: function() {

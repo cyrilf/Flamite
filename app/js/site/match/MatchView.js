@@ -1,8 +1,14 @@
 Botinder.MatchesMatchView = Ember.View.extend({
   refreshScroll: function() {
+    var $messages = $('.match .messages');
     var height = window.innerHeight - $('.match .profil').height() - $('.match .write').height();
     
-    $('.match .messages').css('height', height + 'px');
+    $messages.css('height', height + 'px');
+    $messages.scrollTop($messages[0].scrollHeight);
+  },
+
+  parentViewDidChange: function() {
+    console.log('change..');
   },
 
   didInsertElement: function() {
@@ -10,10 +16,13 @@ Botinder.MatchesMatchView = Ember.View.extend({
     $(window).on('resize.match', this.refreshScroll);
 
     this.refreshScroll();
+    this.get('controller').on('scroll', this, this.refreshScroll);
   },
 
   willDestroyElement: function() {
     $(window).off('scroll.match');
     $(window).off('resize.match');
+
+    this.get('controller').off('scroll', this, this.refreshScroll);
   },
 });
