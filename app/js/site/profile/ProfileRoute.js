@@ -18,6 +18,8 @@ Botinder.ProfileRoute = Ember.Route.extend({
         var birth_date = new Date(_user.birth_date);
         var ping_time = new Date(_user.ping_time);
 
+        _gaq && _gaq.push(['_trackEvent', 'profile', 'hit']);
+
         resolve({
           id: _user._id,
           name: _user.name,

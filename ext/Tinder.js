@@ -158,9 +158,13 @@ Botinder.Tinder = (function(Botinder) {
 
         req.onsuccess = function(e) {
           var data = e.target.result;
-          data.new_data = false;
-          os.put(data);
-          sendResponse(data);
+          if (data) {
+            data.new_data = false;
+            os.put(data);
+            sendResponse(data);
+          } else {
+            sendResponse(false);
+          }
         };
       }
 

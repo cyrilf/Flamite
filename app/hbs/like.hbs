@@ -1,4 +1,8 @@
 <div class="page-like">
+    <div {{bind-attr class="noMore::hidden :no-more"}}>
+      No more profile, please increase distance<br>
+      on your mobile then wait.
+  </div>
   <div class="like-list">
     {{#each user in controller}}
       {{view view.itemView userBinding=user}}

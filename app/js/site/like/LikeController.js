@@ -5,6 +5,7 @@ Botinder.LikeController = Ember.ArrayController.extend({
   displayNb: 0,
   users: [],
   likeAuto: false,
+  noMore: false,
 
   start: function() {
     return this.get('running') ? 'Break!' : 'Start!';
@@ -52,9 +53,22 @@ Botinder.LikeController = Ember.ArrayController.extend({
   }.observes('running'),
 
   gotMore: function(users) {
-    this.set('users', this.get('users').concat(users));
-    this.set('getMore', false);
-    this.renderUser();
+    var self = this;
+    console.log('got more', users);
+
+    if (users.length == 0) {
+      this.set('noMore', true);
+      this.set('getMore', false);
+
+      setTimeout(function() {
+        self.renderUser();
+      }, 4000);
+    } else {
+      this.set('users', this.get('users').concat(users));
+      this.set('noMore', false);
+      this.set('getMore', false);
+      this.renderUser();
+    }
   },
 
   init: function() {
@@ -73,10 +87,17 @@ Botinder.LikeController = Ember.ArrayController.extend({
     },
 
     like: function(like, user, callback) {
+
+      _gaq && _gaq.push(['_trackEvent', 'matches', like ? 'like' : 'dislike']);
+
       chrome.runtime.sendMessage({
         type: 'request',
         path: (like ? 'like' : 'dislike') + '/' + user.id
       }, function(result) {
+        if (result.match) {
+          _gaq && _gaq.push(['_trackEvent', 'match', 'hit']);
+        }
+
         callback(result);
       });
 

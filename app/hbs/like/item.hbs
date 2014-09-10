@@ -4,11 +4,11 @@
       <div class="wrap">
         <div class="username">{{user.name}} <span class="age">{{user.age}}</span></div>
         <div class="actions">
-          {{#unless user.match}}
+          {{#unless user.matchId}}
             <button {{action like 1 target='view'}} {{bind-attr class=':button :medium :green user.liked:active'}}>Like</button>
             <button {{action like 0 target='view'}} {{bind-attr class=':button :medium :red user.disliked:active'}}>Dislike</button>
           {{else}}
-            {{#link-to 'matches.match' user.matchId}}<button class="button medium pink active">Match!</button>{{/link-to}}
+            <button class="button medium pink active">Match!</button>
           {{/unless}}
         </div>
         <div class="info">

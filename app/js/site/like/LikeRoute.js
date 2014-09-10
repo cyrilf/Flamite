@@ -14,6 +14,7 @@ Botinder.LikeRoute = Ember.Route.extend({
       var users = [];
 
       if (!obj || !obj.results) {
+        callback([]);
         return;
       }
 
