@@ -54,7 +54,6 @@ Botinder.LikeController = Ember.ArrayController.extend({
 
   gotMore: function(users) {
     var self = this;
-    console.log('got more', users);
 
     if (users.length == 0) {
       this.set('noMore', true);
