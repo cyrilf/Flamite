@@ -1,14 +1,14 @@
 {
   "name": "Botinder",
-  "version": "1.0.0",
+  "version": "1.5.0",
   "devDependencies": {
     "bower": "latest",
     "gulp": "latest",
     "gulp-clean": "latest",
     "gulp-sass": "latest",
     "gulp-watch": "latest",
-    "gulp-concat": "~2.3.4",
-    "run-sequence": "~0.3.6",
-    "gulp-ember-handlebars": "~0.6.0"
+    "gulp-concat": "latest",
+    "run-sequence": "latest",
+    "gulp-ember-handlebars": "latest"
   }
 }

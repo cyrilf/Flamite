@@ -10,12 +10,12 @@
     margin: 24px 0;
     font-family: 'Raleway-Regular';
     font-size: 3.2em;
-    color: #4E566E;
+    color: $color-blue;
     text-align: center;
 
     .age {
       font-family: 'Raleway-Thin';
-      color: #99A0B3;
+      color: $color-blue-lightest;
     }
   }
 
@@ -23,7 +23,7 @@
     margin-top: 16px;
     font-size: 0.7em;
     text-transform: uppercase;
-    color: #99A0B3;
+    color: $color-blue-lightest;
   }
   .min-value {
     margin-top: 4px; 

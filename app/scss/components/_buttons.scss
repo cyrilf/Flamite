@@ -7,6 +7,15 @@
   @include transition(all .4s ease);
 }
 
+.button-patch {
+  display: inline-block;
+  border: none;
+  outline: none;
+
+  @include border-box;
+  @include transition(all .4s ease);
+}
+
 .button.big {
   padding: 8px 14px;;
 }
@@ -17,42 +26,12 @@
 }
 
 .button.light {
-  border-color: #99A0B3;
-  color: #99A0B3;
+  border-color: $color-blue-lightest;
+  color: $color-blue-lightest;
 
   &.active {
     color: #A8FFA5;
     border-color: #A8FFA5;
-  }
-}
-
-.button.green {
-  border-color: #72DF95;
-  color: #72DF95;
-
-  &.active {
-    color: #FFF;
-    background: #72DF95;
-  }
-}
-
-.button.red {
-  border-color: #F18080;
-  color: #F18080;
-
-  &.active {
-    color: #FFF;
-    background: #F18080;
-  }
-}
-
-.button.pink {
-  border-color: #DF72C5;
-  color: #DF72C5;
-
-  &.active {
-    color: #FFF;
-    background: #DF72C5;
   }
 }
 
@@ -62,4 +41,28 @@
   border: none;
   color: #727272;
   background: #C9C9C9;
+}
+
+.button-patch.big {
+  padding: 14px;;
+}
+
+.button-patch.green {
+  background: #72DF95;
+  color: #FFF;
+}
+
+.button-patch.red {
+  background: #F18080;
+  color: #FFF;
+}
+
+.button-patch.pink {
+  border-color: #DF72C5;
+  color: #DF72C5;
+
+  &.active {
+    color: #FFF;
+    background: #DF72C5;
+  }
 }

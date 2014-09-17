@@ -1,4 +1,4 @@
-@include keyframe(like-item-display) {
+@include keyframe(display-in) {
   0% {
     opacity: 0;
   }
@@ -7,7 +7,7 @@
   }
 }
 
-@include keyframe(like-item-enlarge) {
+@include keyframe(enlarge) {
   0% {
     height: 0px;
   }

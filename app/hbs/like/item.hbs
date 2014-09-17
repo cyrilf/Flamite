@@ -3,19 +3,19 @@
     <td class="profil">
       <div class="wrap">
         <div class="username">{{user.name}} <span class="age">{{user.age}}</span></div>
-        <div class="actions">
-          {{#unless user.matchId}}
-            <button {{action like 1 target='view'}} {{bind-attr class=':button :medium :green user.liked:active'}}>Like</button>
-            <button {{action like 0 target='view'}} {{bind-attr class=':button :medium :red user.disliked:active'}}>Dislike</button>
-          {{else}}
-            <button class="button medium pink active">Match!</button>
-          {{/unless}}
-        </div>
         <div class="info">
           <div class="min-title">Distance</div>
           <div class="min-value">{{user.distance_mi}} miles ({{user.distance_km}} km)</div>
           <div class="min-title">Connection</div>
           <div class="min-value">{{user.ping_time}}</div>
+        </div>
+        <div class="actions">
+          {{#unless user.matchId}}
+            <button {{action like 1 target='view'}} {{bind-attr class=':button-patch :big :green user.liked:active user.disliked:inactive'}}>Like</button>
+            <button {{action like 0 target='view'}} {{bind-attr class=':button-patch :big :red user.disliked:active user.liked:inactive'}}>Dislike</button>
+          {{else}}
+            <button class="button medium pink active">Match!</button>
+          {{/unless}}
         </div>
       </div>
     </td>

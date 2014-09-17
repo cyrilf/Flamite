@@ -7,10 +7,6 @@ Botinder.MatchesMatchView = Ember.View.extend({
     $messages.scrollTop($messages[0].scrollHeight);
   },
 
-  parentViewDidChange: function() {
-    console.log('change..');
-  },
-
   didInsertElement: function() {
     $(window).on('scroll.match', this.refreshScroll);
     $(window).on('resize.match', this.refreshScroll);

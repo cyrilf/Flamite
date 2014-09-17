@@ -7,7 +7,6 @@ Botinder.MatchesMatchRoute = Ember.Route.extend({
     var self = this;
 
     this.set('ts', setInterval(function() {
-      console.log('refresh-2');
       self.refresh();
     }, 6000));
   },

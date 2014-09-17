@@ -8,7 +8,7 @@
   .like-list {
     .item {
       overflow: hidden;
-      @include animation(like-item-enlarge .8s ease forwards);
+      @include animation(enlarge .8s ease forwards);
     }
   }
 
@@ -27,8 +27,6 @@
       height: 202px;
       background-size: cover;
       background-position: center center;
-
-      /*@include animation(like-item-display 1s ease-in-out forwards);*/
     }
   }
 
@@ -42,23 +40,39 @@
       background: #F0F2F7;
     }
 
-    .info {
+    .actions {
       position: absolute;
-      bottom: 12px;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+
+      .button-patch {
+        float: left;
+
+        &.green {
+          width: 60%;
+        }
+        &.red {
+          width: 40%;
+        }
+
+        &.active {
+          opacity: .8;
+        }
+        &.inactive {
+          opacity: .2;
+        }
+      }
     }
 
     .username {
       font-family: 'Raleway-Regular';
       font-size: 1.4em;
-      color: #444C63;
+      color: $color-blue-strong;
 
       .age {
         color: #737F9E;
       }
-    }
-
-    .actions {
-      margin: 6px 0;
     }
 
     .min-title {
