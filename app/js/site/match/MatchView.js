@@ -13,6 +13,8 @@ Botinder.MatchesMatchView = Ember.View.extend({
 
     this.refreshScroll();
     this.get('controller').on('scroll', this, this.refreshScroll);
+
+    $('.message-field').focus();
   },
 
   willDestroyElement: function() {
@@ -20,5 +22,5 @@ Botinder.MatchesMatchView = Ember.View.extend({
     $(window).off('resize.match');
 
     this.get('controller').off('scroll', this, this.refreshScroll);
-  },
+  }
 });
