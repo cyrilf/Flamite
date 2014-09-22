@@ -3,6 +3,11 @@ Botinder.calculateAge = function(date) {
   return Math.abs(new Date(ageDifMs).getUTCFullYear() - 1970);
 };
 
+function getMonthName(month) {
+    var ar = new Array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
+    return ar[month];
+}
+
 Botinder.formatDate = function(date, time) {
     var currDate = date.getDate();
     var monthName = getMonthName(date.getMonth());
@@ -16,7 +21,6 @@ Botinder.formatDate = function(date, time) {
     return currDate + ' ' + monthName + ' ' + year + (time ? (', ' + hours + ':' + minutes) : '');
 };
 
-function getMonthName(month) {
-    var ar = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
-    return ar[month];
+Botinder.formatText = function(text) {
+    return text.replace(/<.+?>/g, '').replace(/\n/g, '<br>');
 }
