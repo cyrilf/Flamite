@@ -1,5 +1,6 @@
 Botinder.MatchesMatchController = Ember.Controller.extend(Ember.Evented, {
-  needs: ['matches', 'application'],
+  needs: ['application'],
+  match: null,
   message: '',
 
   modelObs: function() {

@@ -1,4 +1,5 @@
 Botinder.MatchesMatchRoute = Ember.Route.extend({
+  match: null,
   timeout: null,
   updateEvent: false,
   ts: false,
@@ -16,6 +17,9 @@ Botinder.MatchesMatchRoute = Ember.Route.extend({
   },
 
   model: function(params) {
+
+    this.set('match', params.match_id);
+
     return new Ember.RSVP.Promise(function(resolve) {
       chrome.runtime.sendMessage({
         type: 'match',
@@ -70,5 +74,11 @@ Botinder.MatchesMatchRoute = Ember.Route.extend({
         resolve(match);
       });
     });
+  },
+
+  actions: {
+    didTransition: function() {
+      this.controller.set('match', this.get('match'));
+    }
   }
 });
