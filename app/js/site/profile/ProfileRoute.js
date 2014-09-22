@@ -23,7 +23,7 @@ Botinder.ProfileRoute = Ember.Route.extend({
         resolve({
           id: _user._id,
           name: _user.name,
-          bio: _user.bio,
+          bio: Botinder.formatBio(_user.bio),
           age: Botinder.calculateAge(birth_date),
           ping_time: Botinder.formatDate(ping_time, true),
           distance_km: Math.round(_user.distance_mi * 1.609),

@@ -20,3 +20,7 @@ function getMonthName(month) {
     var ar = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
     return ar[month];
 }
+
+Botinder.formatBio = function(raw_text) {
+    return formatted_text.replace(/\n/g, '<br />');
+}
