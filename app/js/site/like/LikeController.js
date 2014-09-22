@@ -6,6 +6,10 @@ Botinder.LikeController = Ember.ArrayController.extend({
   users: [],
   likeAuto: false,
   noMore: false,
+  stats: {
+    profiles: 0,
+    matchs: 0
+  },
 
   start: function() {
     return this.get('running') ? 'Break!' : 'Start!';
@@ -29,6 +33,7 @@ Botinder.LikeController = Ember.ArrayController.extend({
 
     // display user
     this.unshiftObject(users[0]);
+    this.set('stats.profiles', this.get('stats.profiles') + 1);
 
     users.shift();
 
@@ -95,6 +100,7 @@ Botinder.LikeController = Ember.ArrayController.extend({
       }, function(result) {
         if (result.match) {
           _gaq && _gaq.push(['_trackEvent', 'match', 'hit']);
+          this.set('stats.matchs', this.get('stats.matchs') + 1);
         }
 
         callback(result);

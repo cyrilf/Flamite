@@ -8,13 +8,21 @@ Botinder.MatchesMatchView = Ember.View.extend({
   },
 
   didInsertElement: function() {
+    var self = this;
+
     $(window).on('scroll.match', this.refreshScroll);
     $(window).on('resize.match', this.refreshScroll);
 
     this.refreshScroll();
+
     this.get('controller').on('scroll', this, this.refreshScroll);
 
     $('.message-field').focus();
+    $('.message-field').on('keyup', function(e) {
+      if (e.keyCode == 13) {
+        self.get('controller').send('submit');
+      }
+    });
   },
 
   willDestroyElement: function() {
@@ -22,5 +30,11 @@ Botinder.MatchesMatchView = Ember.View.extend({
     $(window).off('resize.match');
 
     this.get('controller').off('scroll', this, this.refreshScroll);
-  }
+
+    $('.message-field').off('keyup');
+  },
+
+  matchObs: function() {
+    $('.message-field').focus();
+  }.observes('controller')
 });
