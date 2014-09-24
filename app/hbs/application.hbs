@@ -5,7 +5,7 @@
     <ul class="main-menu">
       <li>{{#link-to 'profile' user._id}}<img class="user-photo" {{bind-attr src="user.photo"}}> {{user.name}}{{/link-to}}</li>
       <li>{{#link-to 'like'}}Booster{{/link-to}}</li>
-      <li>{{#link-to 'matches'}}Matchs{{/link-to}}</li>
+      <li>{{#link-to 'matches'}}Matches{{/link-to}}</li>
       <li {{action "reset"}} class="reset">Sign out</li>
     </ul>
   </div>
@@ -15,7 +15,4 @@
 </div>
 <div class="page">
   {{outlet}}
-</div>
-<div {{bind-attr class=":update updateOngo::hidden"}}>
-  mise à jour en cours
 </div>

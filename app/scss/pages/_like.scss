@@ -93,7 +93,6 @@
   }
 
   .stats {
-    margin-bottom: 24px;
     text-align: right;
 
     big {
@@ -110,6 +109,9 @@
   }
 
   .info {
+    position: absolute;
+    bottom: 12px;
+    right: 32px;
     font-size: 0.8em;
     color: #8088A0;
 

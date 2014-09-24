@@ -12,7 +12,11 @@
     {{#each message in model.messages}}
       <li class="item">
         <div class="photo-container"><img {{bind-attr src="message.author.photo"}} class="user-photo"></div>
-        <div class="message">{{message.content}}</div>
+        <div class="message">
+          <div class="content">
+            {{message.content}}
+          </div>
+        </div>
       </li>
     {{/each}}
   </ul>
