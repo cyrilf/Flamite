@@ -1,4 +1,4 @@
-Botinder.ProfileRoute = Ember.Route.extend({
+Bolinter.ProfileRoute = Ember.Route.extend({
   model: function(params) {
     return new Ember.RSVP.Promise(function(resolve) {
       chrome.runtime.sendMessage({
@@ -6,13 +6,21 @@ Botinder.ProfileRoute = Ember.Route.extend({
         path: 'user/' + params.user
       }, function(obj) {
         var _user = obj.results;
+        var photo = null;
         var photos = [];
 
         for (var i = 0; i < 6; i++) {
-          photos[i] = _user.photos[i] ? {
-            big: _user.photos[i].processedFiles[0].url,
-            small: _user.photos[i].processedFiles[2].url
-          } : false;
+
+          if (_user.photos[i]) {
+            photos[i] = {
+              big: _user.photos[i].processedFiles[0].url,
+              small: _user.photos[i].processedFiles[2].url
+            };
+
+            if (i == 0) {
+              photo = _user.photos[i].processedFiles[3].url;
+            }
+          }
         }
 
         var birth_date = new Date(_user.birth_date);
@@ -23,12 +31,13 @@ Botinder.ProfileRoute = Ember.Route.extend({
         resolve({
           id: _user._id,
           name: _user.name,
-          bio: Botinder.formatText(_user.bio),
-          age: Botinder.calculateAge(birth_date),
-          ping_time: Botinder.formatDate(ping_time, true),
+          bio: Bolinter.formatText(_user.bio),
+          age: Bolinter.calculateAge(birth_date),
+          ping_time: Bolinter.formatDate(ping_time, true),
           distance_km: Math.round(_user.distance_mi * 1.609),
           distance_mi: _user.distance_mi,
-          photos: photos
+          photos: photos,
+          photo: photo
         });
       });
     });

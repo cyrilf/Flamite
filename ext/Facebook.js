@@ -2,17 +2,17 @@
  * Facebook
  */
 
-Botinder.Facebook = (function(Botinder) {
+Bolinter.Facebook = (function(Bolinter) {
 
   function facebookAuthSuccess(facebook_token, tabId) {
-    Botinder.Tinder.request('auth', 'POST', {
+    Bolinter.Tinter.request('auth', 'POST', {
       facebook_token: facebook_token
     }, {
       tabId: tabId
     }).done(function(result) {
-      Botinder.setUser(result.user);
-      Botinder.Tinder.setToken(result.token);
-      Botinder.openAppTab(tabId);
+      Bolinter.setUser(result.user);
+      Bolinter.Tinter.setToken(result.token);
+      Bolinter.openAppTab(tabId);
     });
   }
 
@@ -45,4 +45,4 @@ Botinder.Facebook = (function(Botinder) {
     },
     openAuthTab: openAuthTab
   };
-})(Botinder);
+})(Bolinter);

@@ -1,7 +1,7 @@
-Botinder
+Bolinter
 ========
 
-A Tinder extension
+A Tinter extension
 
 
 License

@@ -1,8 +1,8 @@
 /**
- * Tinder
+ * Tinter
  */
 
-Botinder.Tinder = (function(Botinder) {
+Bolinter.Tinter = (function(Bolinter) {
   var token = false;
   var updated = false;
   var last_update = null;
@@ -22,13 +22,13 @@ Botinder.Tinder = (function(Botinder) {
       }
     }).fail(function(error) {
       if (error.status == 401) {
-        Botinder.openWelcomeTab(options ? options.tabId : null);
+        Bolinter.openWelcomeTab(options ? options.tabId : null);
       }
     });
   }
 
   function setToken(_token) {
-    localStorage.setItem('tinder_token', _token);
+    localStorage.setItem('linter_token', _token);
     token = _token;
   }
 
@@ -36,9 +36,9 @@ Botinder.Tinder = (function(Botinder) {
     return token;
   }
 
-  function updateTinderData(tabId, callback) {
+  function updateTinterData(tabId, callback) {
     var last_activity_date = localStorage.getItem('last_activity_date');
-    var user = Botinder.getUser();
+    var user = Bolinter.getUser();
 
     // check if update is allow
     if (updated || (last_update && last_update > (new Date().getTime() - 2000))) {
@@ -50,8 +50,8 @@ Botinder.Tinder = (function(Botinder) {
     updated = true;
     last_update = new Date().getTime();
 
-    // make Tinder update request
-    var prm = Botinder.Tinder.request('updates', 'POST', {
+    // make Tinter update request
+    var prm = Bolinter.Tinter.request('updates', 'POST', {
       last_activity_date: last_activity_date ? last_activity_date : ''
     }, {
       tabId: tabId
@@ -65,7 +65,7 @@ Botinder.Tinder = (function(Botinder) {
         var match = obj.matches[i];
 
         (function(match, i) {
-          var os = Botinder.db.transaction(['matches'], 'readwrite').objectStore('matches');
+          var os = Bolinter.db.transaction(['matches'], 'readwrite').objectStore('matches');
           var req = os.get(match['_id']);
 
           req.onsuccess = function(e) {
@@ -118,7 +118,7 @@ Botinder.Tinder = (function(Botinder) {
     chrome.webRequest.onBeforeSendHeaders.addListener(function(details) {
       for (var i = 0; i < details.requestHeaders.length; ++i) {
         if (details.requestHeaders[i].name === 'User-Agent') {
-          details.requestHeaders[i].value = 'Tinder Android Version 3.2.1';
+          details.requestHeaders[i].value = 'Tinter Android Version 3.2.1';
         }
       }
       return {requestHeaders: details.requestHeaders};
@@ -126,9 +126,9 @@ Botinder.Tinder = (function(Botinder) {
 
     chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
       
-      // Tinder request
+      // Tinter request
       if (request.type === 'request') {
-        var prm = Botinder.Tinder.request(
+        var prm = Bolinter.Tinter.request(
           request.path, 
           request.method ? request.method : 'GET', 
           request.data ? request.data : {},
@@ -146,14 +146,14 @@ Botinder.Tinder = (function(Botinder) {
 
       // matches
       else if (request.type === 'matches') {
-        Botinder.IndexedDB.getMatches(request.limit, request.offset, function(matches) {
+        Bolinter.IndexedDB.getMatches(request.limit, request.offset, function(matches) {
           sendResponse(matches);
         });
       }
 
       // match
       else if (request.type === 'match') {
-        var os = Botinder.db.transaction(['matches'], 'readwrite').objectStore('matches');
+        var os = Bolinter.db.transaction(['matches'], 'readwrite').objectStore('matches');
         var req = os.get(request.id);
 
         req.onsuccess = function(e) {
@@ -170,7 +170,7 @@ Botinder.Tinder = (function(Botinder) {
 
       // post message
       else if (request.type === 'message_post') {
-        Botinder.Tinder.request('user/matches/' + request.id, 'POST', {
+        Bolinter.Tinter.request('user/matches/' + request.id, 'POST', {
           message: request.message
         });
 
@@ -179,7 +179,7 @@ Botinder.Tinder = (function(Botinder) {
 
       // update data
       else if (request.type === 'update') {
-        updateTinderData(sender.tab.id);
+        updateTinterData(sender.tab.id);
         return false;
       }
 
@@ -189,11 +189,11 @@ Botinder.Tinder = (function(Botinder) {
 
   return {
     init: function() {
-      token = localStorage.getItem('tinder_token');
+      token = localStorage.getItem('linter_token');
       chromeEvent();
     },
     request: request,
     setToken: setToken,
     getToken: getToken
   };
-})(Botinder);
+})(Bolinter);

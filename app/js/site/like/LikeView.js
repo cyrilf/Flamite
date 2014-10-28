@@ -1,4 +1,4 @@
-Botinder.LikeView = Ember.View.extend({
+Bolinter.LikeView = Ember.View.extend({
   itemView: Ember.View.extend({
     tagName: 'div',
     classNames: ['item'],

@@ -1,8 +1,8 @@
 /**
- * Botinder
+ * Bolinter
  */
 
-var Botinder = (function() {
+var Bolinter = (function() {
   var user = null;
 
   function openAppTab(tabId) {
@@ -41,14 +41,14 @@ var Botinder = (function() {
   function resetLocalStorage() {
     localStorage.removeItem('last_activity_date');
     localStorage.removeItem('last_update');
-    localStorage.removeItem('tinder_token');
+    localStorage.removeItem('linter_token');
     localStorage.removeItem('user');
   }
 
   function reset() {
     resetLocalStorage();
-    Botinder.Tinder.setToken(null);
-    Botinder.IndexedDB.reset();
+    Bolinter.Tinter.setToken(null);
+    Bolinter.IndexedDB.reset();
   }
 
   function chromeEvent() {
@@ -75,11 +75,11 @@ var Botinder = (function() {
       return true;
     });
 
-    // listen Botinder button
+    // listen Bolinter button
     chrome.browserAction.onClicked.addListener(function(tab) {
 
-      // if Tinder token get update
-      if (Botinder.Tinder.getToken()) {
+      // if Tinter token get update
+      if (Bolinter.Tinter.getToken()) {
         openAppTab();
       }
 
@@ -97,16 +97,16 @@ var Botinder = (function() {
     getUser: getUser,
     user: user,
     init: function() {
-      Botinder.IndexedDB.init(function(result) {
+      Bolinter.IndexedDB.init(function(result) {
 
         // init
-        Botinder.Tinder.init();
-        Botinder.Facebook.init();
+        Bolinter.Tinter.init();
+        Bolinter.Facebook.init();
 
         // reset localstorage if IndexedDB need upgrade
         if (result.upgradeneeded) {
           resetLocalStorage();
-          Botinder.Tinder.setToken(null);
+          Bolinter.Tinter.setToken(null);
         }
 
         // user

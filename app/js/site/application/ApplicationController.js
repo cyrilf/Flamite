@@ -1,8 +1,8 @@
-Botinder.ApplicationController = Ember.Controller.extend({
+Bolinter.ApplicationController = Ember.Controller.extend({
   user: null,
 
   init: function() {
-    this.set('user', Botinder.User);
+    this.set('user', Bolinter.User);
 
     setInterval(function() {
       chrome.runtime.sendMessage({type: 'update'});

@@ -1,8 +1,8 @@
 {
-    "name"              : "Botinder",
-    "version"           : "1.7.0",
+    "name"              : "Bolinter",
+    "version"           : "1.8.0",
     "manifest_version"  : 2,
-    "description"       : "a Tinder extension",
+    "description"       : "a Tinter extension",
     "permissions"       : [
       "storage", 
       "webRequest",
@@ -12,12 +12,12 @@
     "content_security_policy": "script-src 'self' https://api.gotinder.com https://ssl.google-analytics.com 'unsafe-eval'; object-src 'self'",
     "browser_action": {
       "default_icon": "icons/icon.png",
-      "default_title": "Botinder"
+      "default_title": "Bolinter"
     },
     "background" : {
       "scripts": [
           "vendor/jquery.min.js", 
-          "ext/Botinder.js", 
+          "ext/Bolinter.js", 
           "ext/IndexedDB.js", 
           "ext/Facebook.js", 
           "ext/Tinder.js", 

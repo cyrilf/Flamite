@@ -1,4 +1,4 @@
-Botinder.MatchesRoute = Ember.Route.extend({
+Bolinter.MatchesRoute = Ember.Route.extend({
   updateEvent: false,
   ts: false,
 

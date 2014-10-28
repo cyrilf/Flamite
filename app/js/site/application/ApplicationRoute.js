@@ -1,5 +1,5 @@
-Botinder.ApplicationRoute = Ember.Route.extend(Botinder.SessionApplicationRouteMixin, {
+Bolinter.ApplicationRoute = Ember.Route.extend(Bolinter.SessionApplicationRouteMixin, {
   afterModel: function() {
-    this.controllerFor('application').set('user', Botinder.user);
+    this.controllerFor('application').set('user', Bolinter.user);
   }
 });

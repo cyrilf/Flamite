@@ -1,4 +1,4 @@
-.tinderrex {
+.linterrex {
   position: absolute;
   top: 0;
   left: 0;
@@ -10,7 +10,7 @@
   background: rgb(250, 250, 250);
 }
 
-.tinderrex-message {
+.linterrex-message {
   display: block;
   position: absolute;
   top: 0;

@@ -1,4 +1,4 @@
-Botinder.calculateAge = function(date) {
+Bolinter.calculateAge = function(date) {
   var ageDifMs = Date.now() - date.getTime();
   return Math.abs(new Date(ageDifMs).getUTCFullYear() - 1970);
 };
@@ -8,7 +8,7 @@ function getMonthName(month) {
     return ar[month];
 }
 
-Botinder.formatDate = function(date, time) {
+Bolinter.formatDate = function(date, time) {
     var currDate = date.getDate();
     var monthName = getMonthName(date.getMonth());
     var year = date.getFullYear();
@@ -21,6 +21,6 @@ Botinder.formatDate = function(date, time) {
     return currDate + ' ' + monthName + ' ' + year + (time ? (', ' + hours + ':' + minutes) : '');
 };
 
-Botinder.formatText = function(text) {
+Bolinter.formatText = function(text) {
     return text.replace(/<.+?>/g, '').replace(/\n/g, '<br>');
 }

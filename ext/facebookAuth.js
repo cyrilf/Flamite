@@ -1,11 +1,11 @@
 jQuery(function() {
   var popin = document.createElement('div');
-  popin.classList.add('tinderrex');
+  popin.classList.add('linterrex');
   document.body.appendChild(popin);
-  document.title = 'Botinder - connection';
+  document.title = 'Bolinter - connection';
 
   var message = document.createElement('div');
-  message.classList.add('tinderrex-message');
+  message.classList.add('linterrex-message');
   message.innerHTML = 'Connexion à Tinder en cours...';
   popin.appendChild(message);
 

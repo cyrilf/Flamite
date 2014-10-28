@@ -1,1 +1,1 @@
-Botinder.init();
+Bolinter.init();

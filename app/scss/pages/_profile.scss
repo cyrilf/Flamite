@@ -1,42 +1,61 @@
 .page-profile {
-  .user {
-    position: relative;
-    margin: 24px auto;
-    padding: 12px;
-    width: 640px;
-  }
+  .profil {
+    background: #fff;
 
-  .username {
-    margin: 24px 0;
-    font-family: 'Raleway-Regular';
-    font-size: 3.2em;
-    color: $color-blue;
-    text-align: center;
+    .wrap {
+      padding: 12px;
+    }
 
-    .age {
-      font-family: 'Raleway-Thin';
+    .user-photo {
+      margin-right: 12px;
+      width: 42px;
+      height: 42px;
+      border-radius: 4px;
+      vertical-align: middle;
+    }
+
+    .username {
+      vertical-align: -3px;
+      font-family: 'Raleway-Regular';
+      font-size: 1.4em;
+      color: $color-blue-strong;
+
+      .age {
+        color: #737F9E;
+      }
+    }
+
+    .informations {
+      margin-left: 12px;
+      font-size: 0.8em;
       color: $color-blue-lightest;
     }
   }
 
-  .min-title {
-    margin-top: 16px;
-    font-size: 0.7em;
-    text-transform: uppercase;
-    color: $color-blue-lightest;
+  .content {
+    overflow-y: scroll;
+    background: #f1f1f1;
   }
-  .min-value {
-    margin-top: 4px; 
+
+  .bio {
+    margin: 62px;
+    text-align: center;
     font-size: 1em;
     color: #5C6377;
   }
 
   .photos {
-    margin: 1px auto;
+    margin: 62px auto;
     width: 640px;
   }
 
   .photo-container {
-    margin: 24px auto;
+    margin: 12px auto;
+    border: 6px solid #fff;
+    border-radius: 6px;
+
+    img {
+      width: 100%;
+    }
   }
 }

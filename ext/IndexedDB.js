@@ -2,12 +2,12 @@
  * IndexedDB
  */
 
-Botinder.IndexedDB = (function(Botinder) {
-  Botinder.db = null;
+Bolinter.IndexedDB = (function(Bolinter) {
+  Bolinter.db = null;
 
   function reset(request) {
-    Botinder.db.close();
-    indexedDB.deleteDatabase('botinder');
+    Bolinter.db.close();
+    indexedDB.deleteDatabase('bolinter');
     init();
   }
 
@@ -25,7 +25,7 @@ Botinder.IndexedDB = (function(Botinder) {
   }
 
   function init(callback) {
-    var request = indexedDB.open('botinder', 14);
+    var request = indexedDB.open('bolinter', 14);
     var upgradeneeded = false;
 
     request.onupgradeneeded = function(e) {
@@ -34,7 +34,7 @@ Botinder.IndexedDB = (function(Botinder) {
     };
 
     request.onsuccess = function(e) {
-      Botinder.db = e.target.result;
+      Bolinter.db = e.target.result;
       callback && callback({
         upgradeneeded: upgradeneeded
       });
@@ -42,7 +42,7 @@ Botinder.IndexedDB = (function(Botinder) {
   }
 
   function getMatches(limit, offset, callback) {
-    var os = Botinder.db.transaction(['matches']).objectStore('matches');
+    var os = Bolinter.db.transaction(['matches']).objectStore('matches');
     var index = os.index('last_activity_date');
     var offset = offset ? IDBKeyRange.upperBound(offset) : null;
     var limit = limit ? limit : 50;
@@ -72,4 +72,4 @@ Botinder.IndexedDB = (function(Botinder) {
     reset: reset,
     getMatches: getMatches
   };
-})(Botinder);
+})(Bolinter);

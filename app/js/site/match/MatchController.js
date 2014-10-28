@@ -1,4 +1,4 @@
-Botinder.MatchesMatchController = Ember.Controller.extend(Ember.Evented, {
+Bolinter.MatchesMatchController = Ember.Controller.extend(Ember.Evented, {
   needs: ['application'],
   message: '',
 

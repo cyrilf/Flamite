@@ -1,14 +1,14 @@
 /**
- * Botinder
+ * Bolinter
  */
 
 // Init app
-var Botinder = Ember.Application.create({
+var Bolinter = Ember.Application.create({
   rootElement: '#app'
 });
 
 // Router
-Botinder.Router.map(function() {
+Bolinter.Router.map(function() {
   this.route('like', {path: '/'});
   this.route('profile', {path: '/profile/:user'});
   
@@ -18,13 +18,13 @@ Botinder.Router.map(function() {
 });
 
 // SessionApplicationRouteMixin
-Botinder.SessionApplicationRouteMixin = Ember.Mixin.create({
+Bolinter.SessionApplicationRouteMixin = Ember.Mixin.create({
   beforeModel: function(transition) {
     return new Ember.RSVP.Promise(function(resolve, reject) {
       chrome.runtime.sendMessage({type: 'user'}, function(user) {
         if (user) {
-          Botinder.user = user;
-          Botinder.user.photo = user.photos[0].processedFiles[3].url;
+          Bolinter.user = user;
+          Bolinter.user.photo = user.photos[0].processedFiles[3].url;
           resolve();
         }
       });
