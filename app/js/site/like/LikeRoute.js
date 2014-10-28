@@ -1,4 +1,4 @@
-Bolinter.LikeRoute = Ember.Route.extend({
+Laforce.LikeRoute = Ember.Route.extend({
   renderTemplate: function() {
     this.render();
     this.render('likeSide', {
@@ -35,8 +35,8 @@ Bolinter.LikeRoute = Ember.Route.extend({
         users.push({
           id: _user._id,
           name: _user.name,
-          age: Bolinter.calculateAge(birth_date),
-          ping_time: Bolinter.formatDate(ping_time, true),
+          age: Laforce.calculateAge(birth_date),
+          ping_time: Laforce.formatDate(ping_time, true),
           distance_km: Math.round(_user.distance_mi * 1.609),
           distance_mi: _user.distance_mi,
           photos: photos

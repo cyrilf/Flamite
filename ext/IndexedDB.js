@@ -2,11 +2,11 @@
  * IndexedDB
  */
 
-Bolinter.IndexedDB = (function(Bolinter) {
-  Bolinter.db = null;
+Laforce.IndexedDB = (function(Laforce) {
+  Laforce.db = null;
 
   function reset(request) {
-    Bolinter.db.close();
+    Laforce.db.close();
     indexedDB.deleteDatabase('bolinter');
     init();
   }
@@ -34,7 +34,7 @@ Bolinter.IndexedDB = (function(Bolinter) {
     };
 
     request.onsuccess = function(e) {
-      Bolinter.db = e.target.result;
+      Laforce.db = e.target.result;
       callback && callback({
         upgradeneeded: upgradeneeded
       });
@@ -42,7 +42,7 @@ Bolinter.IndexedDB = (function(Bolinter) {
   }
 
   function getMatches(limit, offset, callback) {
-    var os = Bolinter.db.transaction(['matches']).objectStore('matches');
+    var os = Laforce.db.transaction(['matches']).objectStore('matches');
     var index = os.index('last_activity_date');
     var offset = offset ? IDBKeyRange.upperBound(offset) : null;
     var limit = limit ? limit : 50;
@@ -72,4 +72,4 @@ Bolinter.IndexedDB = (function(Bolinter) {
     reset: reset,
     getMatches: getMatches
   };
-})(Bolinter);
+})(Laforce);

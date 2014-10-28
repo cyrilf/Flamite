@@ -1,14 +1,14 @@
 /**
- * Bolinter
+ * Laforce
  */
 
 // Init app
-var Bolinter = Ember.Application.create({
+var Laforce = Ember.Application.create({
   rootElement: '#app'
 });
 
 // Router
-Bolinter.Router.map(function() {
+Laforce.Router.map(function() {
   this.route('like', {path: '/'});
   this.route('profile', {path: '/profile/:user'});
   
@@ -18,13 +18,13 @@ Bolinter.Router.map(function() {
 });
 
 // SessionApplicationRouteMixin
-Bolinter.SessionApplicationRouteMixin = Ember.Mixin.create({
+Laforce.SessionApplicationRouteMixin = Ember.Mixin.create({
   beforeModel: function(transition) {
     return new Ember.RSVP.Promise(function(resolve, reject) {
       chrome.runtime.sendMessage({type: 'user'}, function(user) {
         if (user) {
-          Bolinter.user = user;
-          Bolinter.user.photo = user.photos[0].processedFiles[3].url;
+          Laforce.user = user;
+          Laforce.user.photo = user.photos[0].processedFiles[3].url;
           resolve();
         }
       });

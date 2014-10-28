@@ -2,17 +2,17 @@
  * Facebook
  */
 
-Bolinter.Facebook = (function(Bolinter) {
+Laforce.Facebook = (function(Laforce) {
 
   function facebookAuthSuccess(facebook_token, tabId) {
-    Bolinter.Tinter.request('auth', 'POST', {
+    Laforce.Tinter.request('auth', 'POST', {
       facebook_token: facebook_token
     }, {
       tabId: tabId
     }).done(function(result) {
-      Bolinter.setUser(result.user);
-      Bolinter.Tinter.setToken(result.token);
-      Bolinter.openAppTab(tabId);
+      Laforce.setUser(result.user);
+      Laforce.Tinter.setToken(result.token);
+      Laforce.openAppTab(tabId);
     });
   }
 
@@ -45,4 +45,4 @@ Bolinter.Facebook = (function(Bolinter) {
     },
     openAuthTab: openAuthTab
   };
-})(Bolinter);
+})(Laforce);

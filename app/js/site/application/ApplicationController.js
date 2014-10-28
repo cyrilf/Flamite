@@ -1,8 +1,8 @@
-Bolinter.ApplicationController = Ember.Controller.extend({
+Laforce.ApplicationController = Ember.Controller.extend({
   user: null,
 
   init: function() {
-    this.set('user', Bolinter.User);
+    this.set('user', Laforce.User);
 
     setInterval(function() {
       chrome.runtime.sendMessage({type: 'update'});

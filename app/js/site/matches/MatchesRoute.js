@@ -1,4 +1,4 @@
-Bolinter.MatchesRoute = Ember.Route.extend({
+Laforce.MatchesRoute = Ember.Route.extend({
   updateEvent: false,
   ts: false,
 

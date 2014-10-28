@@ -2,7 +2,7 @@
  * Tinter
  */
 
-Bolinter.Tinter = (function(Bolinter) {
+Laforce.Tinter = (function(Laforce) {
   var token = false;
   var updated = false;
   var last_update = null;
@@ -22,7 +22,7 @@ Bolinter.Tinter = (function(Bolinter) {
       }
     }).fail(function(error) {
       if (error.status == 401) {
-        Bolinter.openWelcomeTab(options ? options.tabId : null);
+        Laforce.openWelcomeTab(options ? options.tabId : null);
       }
     });
   }
@@ -38,7 +38,7 @@ Bolinter.Tinter = (function(Bolinter) {
 
   function updateTinterData(tabId, callback) {
     var last_activity_date = localStorage.getItem('last_activity_date');
-    var user = Bolinter.getUser();
+    var user = Laforce.getUser();
 
     // check if update is allow
     if (updated || (last_update && last_update > (new Date().getTime() - 2000))) {
@@ -51,7 +51,7 @@ Bolinter.Tinter = (function(Bolinter) {
     last_update = new Date().getTime();
 
     // make Tinter update request
-    var prm = Bolinter.Tinter.request('updates', 'POST', {
+    var prm = Laforce.Tinter.request('updates', 'POST', {
       last_activity_date: last_activity_date ? last_activity_date : ''
     }, {
       tabId: tabId
@@ -65,7 +65,7 @@ Bolinter.Tinter = (function(Bolinter) {
         var match = obj.matches[i];
 
         (function(match, i) {
-          var os = Bolinter.db.transaction(['matches'], 'readwrite').objectStore('matches');
+          var os = Laforce.db.transaction(['matches'], 'readwrite').objectStore('matches');
           var req = os.get(match['_id']);
 
           req.onsuccess = function(e) {
@@ -128,7 +128,7 @@ Bolinter.Tinter = (function(Bolinter) {
       
       // Tinter request
       if (request.type === 'request') {
-        var prm = Bolinter.Tinter.request(
+        var prm = Laforce.Tinter.request(
           request.path, 
           request.method ? request.method : 'GET', 
           request.data ? request.data : {},
@@ -146,14 +146,14 @@ Bolinter.Tinter = (function(Bolinter) {
 
       // matches
       else if (request.type === 'matches') {
-        Bolinter.IndexedDB.getMatches(request.limit, request.offset, function(matches) {
+        Laforce.IndexedDB.getMatches(request.limit, request.offset, function(matches) {
           sendResponse(matches);
         });
       }
 
       // match
       else if (request.type === 'match') {
-        var os = Bolinter.db.transaction(['matches'], 'readwrite').objectStore('matches');
+        var os = Laforce.db.transaction(['matches'], 'readwrite').objectStore('matches');
         var req = os.get(request.id);
 
         req.onsuccess = function(e) {
@@ -170,7 +170,7 @@ Bolinter.Tinter = (function(Bolinter) {
 
       // post message
       else if (request.type === 'message_post') {
-        Bolinter.Tinter.request('user/matches/' + request.id, 'POST', {
+        Laforce.Tinter.request('user/matches/' + request.id, 'POST', {
           message: request.message
         });
 
@@ -196,4 +196,4 @@ Bolinter.Tinter = (function(Bolinter) {
     setToken: setToken,
     getToken: getToken
   };
-})(Bolinter);
+})(Laforce);

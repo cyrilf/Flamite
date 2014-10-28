@@ -1,4 +1,4 @@
-Bolinter.calculateAge = function(date) {
+Laforce.calculateAge = function(date) {
   var ageDifMs = Date.now() - date.getTime();
   return Math.abs(new Date(ageDifMs).getUTCFullYear() - 1970);
 };
@@ -8,7 +8,7 @@ function getMonthName(month) {
     return ar[month];
 }
 
-Bolinter.formatDate = function(date, time) {
+Laforce.formatDate = function(date, time) {
     var currDate = date.getDate();
     var monthName = getMonthName(date.getMonth());
     var year = date.getFullYear();
@@ -21,6 +21,6 @@ Bolinter.formatDate = function(date, time) {
     return currDate + ' ' + monthName + ' ' + year + (time ? (', ' + hours + ':' + minutes) : '');
 };
 
-Bolinter.formatText = function(text) {
+Laforce.formatText = function(text) {
     return text.replace(/<.+?>/g, '').replace(/\n/g, '<br>');
 }

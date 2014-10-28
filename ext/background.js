@@ -1,1 +1,1 @@
-Bolinter.init();
+Laforce.init();

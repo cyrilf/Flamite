@@ -1,4 +1,4 @@
-Bolinter.LikeController = Ember.ArrayController.extend({
+Laforce.LikeController = Ember.ArrayController.extend({
   delay: 1500,
   running: false,
   getMore: false,

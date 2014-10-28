@@ -1,5 +1,5 @@
-Bolinter.ApplicationRoute = Ember.Route.extend(Bolinter.SessionApplicationRouteMixin, {
+Laforce.ApplicationRoute = Ember.Route.extend(Laforce.SessionApplicationRouteMixin, {
   afterModel: function() {
-    this.controllerFor('application').set('user', Bolinter.user);
+    this.controllerFor('application').set('user', Laforce.user);
   }
 });

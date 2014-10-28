@@ -1,4 +1,4 @@
-Bolinter.MatchesMatchRoute = Ember.Route.extend({
+Laforce.MatchesMatchRoute = Ember.Route.extend({
   timeout: null,
   updateEvent: false,
   ts: false,
@@ -30,7 +30,7 @@ Bolinter.MatchesMatchRoute = Ember.Route.extend({
         var person = {
           id: _user._id,
           name: _user.name,
-          age: Bolinter.calculateAge(birth_date),
+          age: Laforce.calculateAge(birth_date),
           photo: _user.photos[0].processedFiles[3].url
         };
 
@@ -41,10 +41,10 @@ Bolinter.MatchesMatchRoute = Ember.Route.extend({
         for (var i = offset; i < _match.messages.length; i++) {
           var message = _match.messages[i];
 
-          if (message.from == Bolinter.user._id) {
+          if (message.from == Laforce.user._id) {
             var author = {
-              name: Bolinter.user.name,
-              photo: Bolinter.user.photo
+              name: Laforce.user.name,
+              photo: Laforce.user.photo
             };
           } else {
             var author = {
@@ -63,7 +63,7 @@ Bolinter.MatchesMatchRoute = Ember.Route.extend({
         var match = {
           id: _match._id,
           person: person,
-          created_date: Bolinter.formatDate(created_date, true),
+          created_date: Laforce.formatDate(created_date, true),
           messages: messages
         };
 

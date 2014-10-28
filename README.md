@@ -1,4 +1,4 @@
-Bolinter
+Laforce
 ========
 
 A Tinter extension

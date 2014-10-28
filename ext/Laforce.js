@@ -1,8 +1,8 @@
 /**
- * Bolinter
+ * Laforce
  */
 
-var Bolinter = (function() {
+var Laforce = (function() {
   var user = null;
 
   function openAppTab(tabId) {
@@ -47,8 +47,8 @@ var Bolinter = (function() {
 
   function reset() {
     resetLocalStorage();
-    Bolinter.Tinter.setToken(null);
-    Bolinter.IndexedDB.reset();
+    Laforce.Tinter.setToken(null);
+    Laforce.IndexedDB.reset();
   }
 
   function chromeEvent() {
@@ -75,11 +75,11 @@ var Bolinter = (function() {
       return true;
     });
 
-    // listen Bolinter button
+    // listen Laforce button
     chrome.browserAction.onClicked.addListener(function(tab) {
 
       // if Tinter token get update
-      if (Bolinter.Tinter.getToken()) {
+      if (Laforce.Tinter.getToken()) {
         openAppTab();
       }
 
@@ -97,16 +97,16 @@ var Bolinter = (function() {
     getUser: getUser,
     user: user,
     init: function() {
-      Bolinter.IndexedDB.init(function(result) {
+      Laforce.IndexedDB.init(function(result) {
 
         // init
-        Bolinter.Tinter.init();
-        Bolinter.Facebook.init();
+        Laforce.Tinter.init();
+        Laforce.Facebook.init();
 
         // reset localstorage if IndexedDB need upgrade
         if (result.upgradeneeded) {
           resetLocalStorage();
-          Bolinter.Tinter.setToken(null);
+          Laforce.Tinter.setToken(null);
         }
 
         // user
