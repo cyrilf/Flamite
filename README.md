@@ -1,4 +1,4 @@
-Laforce
+Capri
 ========
 
 A Tinter extension

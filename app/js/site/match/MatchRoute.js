@@ -1,4 +1,4 @@
-Laforce.MatchesMatchRoute = Ember.Route.extend({
+Capri.MatchesMatchRoute = Ember.Route.extend({
   timeout: null,
   updateEvent: false,
   ts: false,
@@ -30,7 +30,7 @@ Laforce.MatchesMatchRoute = Ember.Route.extend({
         var person = {
           id: _user._id,
           name: _user.name,
-          age: Laforce.calculateAge(birth_date),
+          age: Capri.calculateAge(birth_date),
           photo: _user.photos[0].processedFiles[3].url
         };
 
@@ -41,10 +41,10 @@ Laforce.MatchesMatchRoute = Ember.Route.extend({
         for (var i = offset; i < _match.messages.length; i++) {
           var message = _match.messages[i];
 
-          if (message.from == Laforce.user._id) {
+          if (message.from == Capri.user._id) {
             var author = {
-              name: Laforce.user.name,
-              photo: Laforce.user.photo
+              name: Capri.user.name,
+              photo: Capri.user.photo
             };
           } else {
             var author = {
@@ -63,7 +63,7 @@ Laforce.MatchesMatchRoute = Ember.Route.extend({
         var match = {
           id: _match._id,
           person: person,
-          created_date: Laforce.formatDate(created_date, true),
+          created_date: Capri.formatDate(created_date, true),
           messages: messages
         };
 

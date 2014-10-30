@@ -1,5 +1,5 @@
-Laforce.ApplicationRoute = Ember.Route.extend(Laforce.SessionApplicationRouteMixin, {
+Capri.ApplicationRoute = Ember.Route.extend(Capri.SessionApplicationRouteMixin, {
   afterModel: function() {
-    this.controllerFor('application').set('user', Laforce.user);
+    this.controllerFor('application').set('user', Capri.user);
   }
 });

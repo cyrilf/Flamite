@@ -1,4 +1,4 @@
-Laforce.MatchesView = Ember.View.extend({
+Capri.MatchesView = Ember.View.extend({
   refreshScroll: function() {
     var height = (window.innerHeight - $('.main-side .top').height() - 1);
     $('.side').css('height', height + 'px');

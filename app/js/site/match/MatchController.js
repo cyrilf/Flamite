@@ -1,4 +1,4 @@
-Laforce.MatchesMatchController = Ember.Controller.extend(Ember.Evented, {
+Capri.MatchesMatchController = Ember.Controller.extend(Ember.Evented, {
   needs: ['application'],
   message: '',
 

@@ -2,7 +2,7 @@
  * Tinter
  */
 
-Laforce.Tinter = (function(Laforce) {
+Capri.Tinter = (function(Capri) {
   var token = false;
   var updated = false;
   var last_update = null;
@@ -22,7 +22,7 @@ Laforce.Tinter = (function(Laforce) {
       }
     }).fail(function(error) {
       if (error.status == 401) {
-        Laforce.openWelcomeTab(options ? options.tabId : null);
+        Capri.openWelcomeTab(options ? options.tabId : null);
       }
     });
   }
@@ -38,7 +38,7 @@ Laforce.Tinter = (function(Laforce) {
 
   function updateTinterData(tabId, callback) {
     var last_activity_date = localStorage.getItem('last_activity_date');
-    var user = Laforce.getUser();
+    var user = Capri.getUser();
 
     // check if update is allow
     if (updated || (last_update && last_update > (new Date().getTime() - 2000))) {
@@ -51,7 +51,7 @@ Laforce.Tinter = (function(Laforce) {
     last_update = new Date().getTime();
 
     // make Tinter update request
-    var prm = Laforce.Tinter.request('updates', 'POST', {
+    var prm = Capri.Tinter.request('updates', 'POST', {
       last_activity_date: last_activity_date ? last_activity_date : ''
     }, {
       tabId: tabId
@@ -65,7 +65,7 @@ Laforce.Tinter = (function(Laforce) {
         var match = obj.matches[i];
 
         (function(match, i) {
-          var os = Laforce.db.transaction(['matches'], 'readwrite').objectStore('matches');
+          var os = Capri.db.transaction(['matches'], 'readwrite').objectStore('matches');
           var req = os.get(match['_id']);
 
           req.onsuccess = function(e) {
@@ -128,7 +128,7 @@ Laforce.Tinter = (function(Laforce) {
       
       // Tinter request
       if (request.type === 'request') {
-        var prm = Laforce.Tinter.request(
+        var prm = Capri.Tinter.request(
           request.path, 
           request.method ? request.method : 'GET', 
           request.data ? request.data : {},
@@ -146,14 +146,14 @@ Laforce.Tinter = (function(Laforce) {
 
       // matches
       else if (request.type === 'matches') {
-        Laforce.IndexedDB.getMatches(request.limit, request.offset, function(matches) {
+        Capri.IndexedDB.getMatches(request.limit, request.offset, function(matches) {
           sendResponse(matches);
         });
       }
 
       // match
       else if (request.type === 'match') {
-        var os = Laforce.db.transaction(['matches'], 'readwrite').objectStore('matches');
+        var os = Capri.db.transaction(['matches'], 'readwrite').objectStore('matches');
         var req = os.get(request.id);
 
         req.onsuccess = function(e) {
@@ -170,7 +170,7 @@ Laforce.Tinter = (function(Laforce) {
 
       // post message
       else if (request.type === 'message_post') {
-        Laforce.Tinter.request('user/matches/' + request.id, 'POST', {
+        Capri.Tinter.request('user/matches/' + request.id, 'POST', {
           message: request.message
         });
 
@@ -196,4 +196,4 @@ Laforce.Tinter = (function(Laforce) {
     setToken: setToken,
     getToken: getToken
   };
-})(Laforce);
+})(Capri);

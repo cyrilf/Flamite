@@ -1,8 +1,8 @@
-Laforce.ApplicationController = Ember.Controller.extend({
+Capri.ApplicationController = Ember.Controller.extend({
   user: null,
 
   init: function() {
-    this.set('user', Laforce.User);
+    this.set('user', Capri.User);
 
     setInterval(function() {
       chrome.runtime.sendMessage({type: 'update'});

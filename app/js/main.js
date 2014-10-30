@@ -1,14 +1,14 @@
 /**
- * Laforce
+ * Capri
  */
 
 // Init app
-var Laforce = Ember.Application.create({
+var Capri = Ember.Application.create({
   rootElement: '#app'
 });
 
 // Router
-Laforce.Router.map(function() {
+Capri.Router.map(function() {
   this.route('like', {path: '/'});
   this.route('profile', {path: '/profile/:user'});
   
@@ -18,13 +18,13 @@ Laforce.Router.map(function() {
 });
 
 // SessionApplicationRouteMixin
-Laforce.SessionApplicationRouteMixin = Ember.Mixin.create({
+Capri.SessionApplicationRouteMixin = Ember.Mixin.create({
   beforeModel: function(transition) {
     return new Ember.RSVP.Promise(function(resolve, reject) {
       chrome.runtime.sendMessage({type: 'user'}, function(user) {
         if (user) {
-          Laforce.user = user;
-          Laforce.user.photo = user.photos[0].processedFiles[3].url;
+          Capri.user = user;
+          Capri.user.photo = user.photos[0].processedFiles[3].url;
           resolve();
         }
       });

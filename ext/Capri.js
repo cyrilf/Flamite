@@ -1,8 +1,8 @@
 /**
- * Laforce
+ * Capri
  */
 
-var Laforce = (function() {
+var Capri = (function() {
   var user = null;
 
   function openAppTab(tabId) {
@@ -47,8 +47,8 @@ var Laforce = (function() {
 
   function reset() {
     resetLocalStorage();
-    Laforce.Tinter.setToken(null);
-    Laforce.IndexedDB.reset();
+    Capri.Tinter.setToken(null);
+    Capri.IndexedDB.reset();
   }
 
   function chromeEvent() {
@@ -75,11 +75,11 @@ var Laforce = (function() {
       return true;
     });
 
-    // listen Laforce button
+    // listen Capri button
     chrome.browserAction.onClicked.addListener(function(tab) {
 
       // if Tinter token get update
-      if (Laforce.Tinter.getToken()) {
+      if (Capri.Tinter.getToken()) {
         openAppTab();
       }
 
@@ -97,16 +97,16 @@ var Laforce = (function() {
     getUser: getUser,
     user: user,
     init: function() {
-      Laforce.IndexedDB.init(function(result) {
+      Capri.IndexedDB.init(function(result) {
 
         // init
-        Laforce.Tinter.init();
-        Laforce.Facebook.init();
+        Capri.Tinter.init();
+        Capri.Facebook.init();
 
         // reset localstorage if IndexedDB need upgrade
         if (result.upgradeneeded) {
           resetLocalStorage();
-          Laforce.Tinter.setToken(null);
+          Capri.Tinter.setToken(null);
         }
 
         // user

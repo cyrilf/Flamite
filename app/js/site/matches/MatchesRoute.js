@@ -1,4 +1,4 @@
-Laforce.MatchesRoute = Ember.Route.extend({
+Capri.MatchesRoute = Ember.Route.extend({
   updateEvent: false,
   ts: false,
 

@@ -1,1 +1,1 @@
-Laforce.init();
+Capri.init();

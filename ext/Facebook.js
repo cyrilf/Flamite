@@ -2,17 +2,17 @@
  * Facebook
  */
 
-Laforce.Facebook = (function(Laforce) {
+Capri.Facebook = (function(Capri) {
 
   function facebookAuthSuccess(facebook_token, tabId) {
-    Laforce.Tinter.request('auth', 'POST', {
+    Capri.Tinter.request('auth', 'POST', {
       facebook_token: facebook_token
     }, {
       tabId: tabId
     }).done(function(result) {
-      Laforce.setUser(result.user);
-      Laforce.Tinter.setToken(result.token);
-      Laforce.openAppTab(tabId);
+      Capri.setUser(result.user);
+      Capri.Tinter.setToken(result.token);
+      Capri.openAppTab(tabId);
     });
   }
 
@@ -45,4 +45,4 @@ Laforce.Facebook = (function(Laforce) {
     },
     openAuthTab: openAuthTab
   };
-})(Laforce);
+})(Capri);

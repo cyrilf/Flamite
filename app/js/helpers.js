@@ -1,4 +1,4 @@
-Laforce.calculateAge = function(date) {
+Capri.calculateAge = function(date) {
   var ageDifMs = Date.now() - date.getTime();
   return Math.abs(new Date(ageDifMs).getUTCFullYear() - 1970);
 };
@@ -8,7 +8,7 @@ function getMonthName(month) {
     return ar[month];
 }
 
-Laforce.formatDate = function(date, time) {
+Capri.formatDate = function(date, time) {
     var currDate = date.getDate();
     var monthName = getMonthName(date.getMonth());
     var year = date.getFullYear();
@@ -21,6 +21,6 @@ Laforce.formatDate = function(date, time) {
     return currDate + ' ' + monthName + ' ' + year + (time ? (', ' + hours + ':' + minutes) : '');
 };
 
-Laforce.formatText = function(text) {
+Capri.formatText = function(text) {
     return text.replace(/<.+?>/g, '').replace(/\n/g, '<br>');
 }

@@ -1,4 +1,4 @@
-Laforce.LikeView = Ember.View.extend({
+Capri.LikeView = Ember.View.extend({
   itemView: Ember.View.extend({
     tagName: 'div',
     classNames: ['item'],
