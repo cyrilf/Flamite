@@ -1,7 +1,7 @@
-Capri
+Flamer
 ========
 
-A Tinter extension
+Tinder client. Previously Botinder.
 
 
 License

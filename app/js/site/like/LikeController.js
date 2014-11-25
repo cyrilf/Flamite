@@ -1,4 +1,4 @@
-Capri.LikeController = Ember.ArrayController.extend({
+Flamer.LikeController = Ember.ArrayController.extend({
   delay: 1500,
   running: false,
   getMore: false,

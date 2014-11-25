@@ -1,4 +1,4 @@
-Capri.MatchesMatchController = Ember.Controller.extend(Ember.Evented, {
+Flamer.MatchesMatchController = Ember.Controller.extend(Ember.Evented, {
   needs: ['application'],
   message: '',
 

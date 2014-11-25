@@ -1,1 +1,1 @@
-Capri.init();
+Flamer.init();

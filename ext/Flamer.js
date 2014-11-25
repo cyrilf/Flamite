@@ -1,8 +1,8 @@
 /**
- * Capri
+ * Flamer
  */
 
-var Capri = (function() {
+var Flamer = (function() {
   var user = null;
 
   function openAppTab(tabId) {
@@ -47,8 +47,8 @@ var Capri = (function() {
 
   function reset() {
     resetLocalStorage();
-    Capri.Tinter.setToken(null);
-    Capri.IndexedDB.reset();
+    Flamer.Tinter.setToken(null);
+    Flamer.IndexedDB.reset();
   }
 
   function chromeEvent() {
@@ -75,11 +75,11 @@ var Capri = (function() {
       return true;
     });
 
-    // listen Capri button
+    // listen Flamer button
     chrome.browserAction.onClicked.addListener(function(tab) {
 
       // if Tinter token get update
-      if (Capri.Tinter.getToken()) {
+      if (Flamer.Tinter.getToken()) {
         openAppTab();
       }
 
@@ -97,16 +97,16 @@ var Capri = (function() {
     getUser: getUser,
     user: user,
     init: function() {
-      Capri.IndexedDB.init(function(result) {
+      Flamer.IndexedDB.init(function(result) {
 
         // init
-        Capri.Tinter.init();
-        Capri.Facebook.init();
+        Flamer.Tinter.init();
+        Flamer.Facebook.init();
 
         // reset localstorage if IndexedDB need upgrade
         if (result.upgradeneeded) {
           resetLocalStorage();
-          Capri.Tinter.setToken(null);
+          Flamer.Tinter.setToken(null);
         }
 
         // user

@@ -1,14 +1,14 @@
 /**
- * Capri
+ * Flamer
  */
 
 // Init app
-var Capri = Ember.Application.create({
+var Flamer = Ember.Application.create({
   rootElement: '#app'
 });
 
 // Router
-Capri.Router.map(function() {
+Flamer.Router.map(function() {
   this.route('like', {path: '/'});
   this.route('profile', {path: '/profile/:user'});
   
@@ -18,13 +18,13 @@ Capri.Router.map(function() {
 });
 
 // SessionApplicationRouteMixin
-Capri.SessionApplicationRouteMixin = Ember.Mixin.create({
+Flamer.SessionApplicationRouteMixin = Ember.Mixin.create({
   beforeModel: function(transition) {
     return new Ember.RSVP.Promise(function(resolve, reject) {
       chrome.runtime.sendMessage({type: 'user'}, function(user) {
         if (user) {
-          Capri.user = user;
-          Capri.user.photo = user.photos[0].processedFiles[3].url;
+          Flamer.user = user;
+          Flamer.user.photo = user.photos[0].processedFiles[3].url;
           resolve();
         }
       });

@@ -2,17 +2,17 @@
  * Facebook
  */
 
-Capri.Facebook = (function(Capri) {
+Flamer.Facebook = (function(Flamer) {
 
   function facebookAuthSuccess(facebook_token, tabId) {
-    Capri.Tinter.request('auth', 'POST', {
+    Flamer.Tinter.request('auth', 'POST', {
       facebook_token: facebook_token
     }, {
       tabId: tabId
     }).done(function(result) {
-      Capri.setUser(result.user);
-      Capri.Tinter.setToken(result.token);
-      Capri.openAppTab(tabId);
+      Flamer.setUser(result.user);
+      Flamer.Tinter.setToken(result.token);
+      Flamer.openAppTab(tabId);
     });
   }
 
@@ -45,4 +45,4 @@ Capri.Facebook = (function(Capri) {
     },
     openAuthTab: openAuthTab
   };
-})(Capri);
+})(Flamer);

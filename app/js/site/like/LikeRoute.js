@@ -1,4 +1,4 @@
-Capri.LikeRoute = Ember.Route.extend({
+Flamer.LikeRoute = Ember.Route.extend({
   renderTemplate: function() {
     this.render();
     this.render('likeSide', {
@@ -35,8 +35,8 @@ Capri.LikeRoute = Ember.Route.extend({
         users.push({
           id: _user._id,
           name: _user.name,
-          age: Capri.calculateAge(birth_date),
-          ping_time: Capri.formatDate(ping_time, true),
+          age: Flamer.calculateAge(birth_date),
+          ping_time: Flamer.formatDate(ping_time, true),
           distance_km: Math.round(_user.distance_mi * 1.609),
           distance_mi: _user.distance_mi,
           photos: photos

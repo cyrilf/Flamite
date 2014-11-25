@@ -1,4 +1,4 @@
-Capri.MatchesRoute = Ember.Route.extend({
+Flamer.MatchesRoute = Ember.Route.extend({
   updateEvent: false,
   ts: false,
 

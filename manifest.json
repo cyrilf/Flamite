@@ -1,8 +1,8 @@
 {
-    "name"              : "Capri",
-    "version"           : "1.9.0",
+    "name"              : "Flamer",
+    "version"           : "1.13.0",
     "manifest_version"  : 2,
-    "description"       : "Capri est avec vous !",
+    "description"       : "Previously Botinder",
     "permissions"       : [
       "storage", 
       "webRequest",
@@ -12,12 +12,12 @@
     "content_security_policy": "script-src 'self' https://api.gotinder.com https://ssl.google-analytics.com 'unsafe-eval'; object-src 'self'",
     "browser_action": {
       "default_icon": "icons/icon.png",
-      "default_title": "Capri"
+      "default_title": "Flamer"
     },
     "background" : {
       "scripts": [
           "vendor/jquery.min.js", 
-          "ext/Capri.js", 
+          "ext/Flamer.js", 
           "ext/IndexedDB.js", 
           "ext/Facebook.js", 
           "ext/Tinder.js", 

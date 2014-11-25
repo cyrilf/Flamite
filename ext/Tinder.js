@@ -2,7 +2,7 @@
  * Tinter
  */
 
-Capri.Tinter = (function(Capri) {
+Flamer.Tinter = (function(Flamer) {
   var token = false;
   var updated = false;
   var last_update = null;
@@ -22,7 +22,7 @@ Capri.Tinter = (function(Capri) {
       }
     }).fail(function(error) {
       if (error.status == 401) {
-        Capri.openWelcomeTab(options ? options.tabId : null);
+        Flamer.openWelcomeTab(options ? options.tabId : null);
       }
     });
   }
@@ -38,7 +38,7 @@ Capri.Tinter = (function(Capri) {
 
   function updateTinterData(tabId, callback) {
     var last_activity_date = localStorage.getItem('last_activity_date');
-    var user = Capri.getUser();
+    var user = Flamer.getUser();
 
     // check if update is allow
     if (updated || (last_update && last_update > (new Date().getTime() - 2000))) {
@@ -51,7 +51,7 @@ Capri.Tinter = (function(Capri) {
     last_update = new Date().getTime();
 
     // make Tinter update request
-    var prm = Capri.Tinter.request('updates', 'POST', {
+    var prm = Flamer.Tinter.request('updates', 'POST', {
       last_activity_date: last_activity_date ? last_activity_date : ''
     }, {
       tabId: tabId
@@ -65,7 +65,7 @@ Capri.Tinter = (function(Capri) {
         var match = obj.matches[i];
 
         (function(match, i) {
-          var os = Capri.db.transaction(['matches'], 'readwrite').objectStore('matches');
+          var os = Flamer.db.transaction(['matches'], 'readwrite').objectStore('matches');
           var req = os.get(match['_id']);
 
           req.onsuccess = function(e) {
@@ -128,7 +128,7 @@ Capri.Tinter = (function(Capri) {
       
       // Tinter request
       if (request.type === 'request') {
-        var prm = Capri.Tinter.request(
+        var prm = Flamer.Tinter.request(
           request.path, 
           request.method ? request.method : 'GET', 
           request.data ? request.data : {},
@@ -146,14 +146,14 @@ Capri.Tinter = (function(Capri) {
 
       // matches
       else if (request.type === 'matches') {
-        Capri.IndexedDB.getMatches(request.limit, request.offset, function(matches) {
+        Flamer.IndexedDB.getMatches(request.limit, request.offset, function(matches) {
           sendResponse(matches);
         });
       }
 
       // match
       else if (request.type === 'match') {
-        var os = Capri.db.transaction(['matches'], 'readwrite').objectStore('matches');
+        var os = Flamer.db.transaction(['matches'], 'readwrite').objectStore('matches');
         var req = os.get(request.id);
 
         req.onsuccess = function(e) {
@@ -170,7 +170,7 @@ Capri.Tinter = (function(Capri) {
 
       // post message
       else if (request.type === 'message_post') {
-        Capri.Tinter.request('user/matches/' + request.id, 'POST', {
+        Flamer.Tinter.request('user/matches/' + request.id, 'POST', {
           message: request.message
         });
 
@@ -196,4 +196,4 @@ Capri.Tinter = (function(Capri) {
     setToken: setToken,
     getToken: getToken
   };
-})(Capri);
+})(Flamer);

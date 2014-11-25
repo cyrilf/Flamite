@@ -1,4 +1,4 @@
-Capri.LikeView = Ember.View.extend({
+Flamer.LikeView = Ember.View.extend({
   itemView: Ember.View.extend({
     tagName: 'div',
     classNames: ['item'],

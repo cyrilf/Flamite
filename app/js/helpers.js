@@ -1,4 +1,4 @@
-Capri.calculateAge = function(date) {
+Flamer.calculateAge = function(date) {
   var ageDifMs = Date.now() - date.getTime();
   return Math.abs(new Date(ageDifMs).getUTCFullYear() - 1970);
 };
@@ -8,7 +8,7 @@ function getMonthName(month) {
     return ar[month];
 }
 
-Capri.formatDate = function(date, time) {
+Flamer.formatDate = function(date, time) {
     var currDate = date.getDate();
     var monthName = getMonthName(date.getMonth());
     var year = date.getFullYear();
@@ -21,6 +21,6 @@ Capri.formatDate = function(date, time) {
     return currDate + ' ' + monthName + ' ' + year + (time ? (', ' + hours + ':' + minutes) : '');
 };
 
-Capri.formatText = function(text) {
+Flamer.formatText = function(text) {
     return text.replace(/<.+?>/g, '').replace(/\n/g, '<br>');
 }

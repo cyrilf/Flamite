@@ -2,11 +2,11 @@
  * IndexedDB
  */
 
-Capri.IndexedDB = (function(Capri) {
-  Capri.db = null;
+Flamer.IndexedDB = (function(Flamer) {
+  Flamer.db = null;
 
   function reset(request) {
-    Capri.db.close();
+    Flamer.db.close();
     indexedDB.deleteDatabase('bolinter');
     init();
   }
@@ -34,7 +34,7 @@ Capri.IndexedDB = (function(Capri) {
     };
 
     request.onsuccess = function(e) {
-      Capri.db = e.target.result;
+      Flamer.db = e.target.result;
       callback && callback({
         upgradeneeded: upgradeneeded
       });
@@ -42,7 +42,7 @@ Capri.IndexedDB = (function(Capri) {
   }
 
   function getMatches(limit, offset, callback) {
-    var os = Capri.db.transaction(['matches']).objectStore('matches');
+    var os = Flamer.db.transaction(['matches']).objectStore('matches');
     var index = os.index('last_activity_date');
     var offset = offset ? IDBKeyRange.upperBound(offset) : null;
     var limit = limit ? limit : 50;
@@ -72,4 +72,4 @@ Capri.IndexedDB = (function(Capri) {
     reset: reset,
     getMatches: getMatches
   };
-})(Capri);
+})(Flamer);

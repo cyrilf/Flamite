@@ -1,4 +1,4 @@
-Capri.ProfileRoute = Ember.Route.extend({
+Flamer.ProfileRoute = Ember.Route.extend({
   model: function(params) {
     return new Ember.RSVP.Promise(function(resolve) {
       chrome.runtime.sendMessage({
@@ -31,9 +31,9 @@ Capri.ProfileRoute = Ember.Route.extend({
         resolve({
           id: _user._id,
           name: _user.name,
-          bio: Capri.formatText(_user.bio),
-          age: Capri.calculateAge(birth_date),
-          ping_time: Capri.formatDate(ping_time, true),
+          bio: Flamer.formatText(_user.bio),
+          age: Flamer.calculateAge(birth_date),
+          ping_time: Flamer.formatDate(ping_time, true),
           distance_km: Math.round(_user.distance_mi * 1.609),
           distance_mi: _user.distance_mi,
           photos: photos,

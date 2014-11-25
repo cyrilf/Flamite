@@ -1,6 +1,6 @@
 {
-  "name": "Capri",
-  "version": "1.7.0",
+  "name": "Flamer",
+  "version": "1.12.0",
   "devDependencies": {
     "bower": "latest",
     "gulp": "latest",

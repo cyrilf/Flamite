@@ -1,4 +1,4 @@
-Capri.ProfileView = Ember.View.extend({
+Flamer.ProfileView = Ember.View.extend({
   refreshScroll: function() {
     var $content = $('.page-profile .content');
     var height = window.innerHeight - $('.page-profile .profil').height();

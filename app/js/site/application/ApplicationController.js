@@ -1,8 +1,8 @@
-Capri.ApplicationController = Ember.Controller.extend({
+Flamer.ApplicationController = Ember.Controller.extend({
   user: null,
 
   init: function() {
-    this.set('user', Capri.User);
+    this.set('user', Flamer.User);
 
     setInterval(function() {
       chrome.runtime.sendMessage({type: 'update'});
