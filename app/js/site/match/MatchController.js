@@ -16,7 +16,7 @@ Flamer.MatchesMatchController = Ember.Controller.extend(Ember.Evented, {
       chrome.runtime.sendMessage({
         type: 'message_post',
         id: match.id,
-        message: this.get('message')
+        message: this.get('message').trim()
       });
 
       this.set('message', '');
