@@ -1,4 +1,4 @@
-Flamer.MatchesMatchView = Ember.View.extend({
+Flamite.MatchesMatchView = Ember.View.extend({
   refreshScroll: function() {
     var $messages = $('.match .messages');
     var height = window.innerHeight - $('.match .profil').height() - $('.match .write').height();

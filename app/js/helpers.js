@@ -1,4 +1,4 @@
-Flamer.calculateAge = function(date) {
+Flamite.calculateAge = function(date) {
   var ageDifMs = Date.now() - date.getTime();
   return Math.abs(new Date(ageDifMs).getUTCFullYear() - 1970);
 };
@@ -8,7 +8,7 @@ function getMonthName(month) {
     return ar[month];
 }
 
-Flamer.formatDate = function(date, time) {
+Flamite.formatDate = function(date, time) {
     var currDate = date.getDate();
     var monthName = getMonthName(date.getMonth());
     var year = date.getFullYear();
@@ -21,6 +21,6 @@ Flamer.formatDate = function(date, time) {
     return currDate + ' ' + monthName + ' ' + year + (time ? (', ' + hours + ':' + minutes) : '');
 };
 
-Flamer.formatText = function(text) {
+Flamite.formatText = function(text) {
     return text.replace(/<.+?>/g, '').replace(/\n/g, '<br>');
 }

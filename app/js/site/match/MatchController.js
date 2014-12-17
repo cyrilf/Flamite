@@ -1,4 +1,4 @@
-Flamer.MatchesMatchController = Ember.Controller.extend(Ember.Evented, {
+Flamite.MatchesMatchController = Ember.Controller.extend(Ember.Evented, {
   needs: ['application'],
   message: '',
 

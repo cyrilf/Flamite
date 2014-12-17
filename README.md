@@ -1,10 +1,10 @@
-Flamer
+Flamite
 ========
 
-Tinder client. Previously Botinder.
+Unofficial Tinder client. Previously Botinder (and Flamer).
 
 
 License
 -------
 
-Released under the MIT license.
+Released under the MIT license. @MrP1ng

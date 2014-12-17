@@ -1,8 +1,8 @@
 /**
- * Flamer
+ * Flamite
  */
 
-var Flamer = (function() {
+var Flamite = (function() {
   var user = null;
 
   function openAppTab(tabId) {
@@ -47,8 +47,8 @@ var Flamer = (function() {
 
   function reset() {
     resetLocalStorage();
-    Flamer.Tinter.setToken(null);
-    Flamer.IndexedDB.reset();
+    Flamite.Tinter.setToken(null);
+    Flamite.IndexedDB.reset();
   }
 
   function chromeEvent() {
@@ -75,11 +75,11 @@ var Flamer = (function() {
       return true;
     });
 
-    // listen Flamer button
+    // listen Flamite button
     chrome.browserAction.onClicked.addListener(function(tab) {
 
       // if Tinter token get update
-      if (Flamer.Tinter.getToken()) {
+      if (Flamite.Tinter.getToken()) {
         openAppTab();
       }
 
@@ -97,16 +97,16 @@ var Flamer = (function() {
     getUser: getUser,
     user: user,
     init: function() {
-      Flamer.IndexedDB.init(function(result) {
+      Flamite.IndexedDB.init(function(result) {
 
         // init
-        Flamer.Tinter.init();
-        Flamer.Facebook.init();
+        Flamite.Tinter.init();
+        Flamite.Facebook.init();
 
         // reset localstorage if IndexedDB need upgrade
         if (result.upgradeneeded) {
           resetLocalStorage();
-          Flamer.Tinter.setToken(null);
+          Flamite.Tinter.setToken(null);
         }
 
         // user

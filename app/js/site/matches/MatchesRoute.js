@@ -1,4 +1,4 @@
-Flamer.MatchesRoute = Ember.Route.extend({
+Flamite.MatchesRoute = Ember.Route.extend({
   updateEvent: false,
   ts: false,
 

@@ -2,11 +2,11 @@
  * IndexedDB
  */
 
-Flamer.IndexedDB = (function(Flamer) {
-  Flamer.db = null;
+Flamite.IndexedDB = (function(Flamite) {
+  Flamite.db = null;
 
   function reset(request) {
-    Flamer.db.close();
+    Flamite.db.close();
     indexedDB.deleteDatabase('bolinter');
     init();
   }
@@ -34,7 +34,7 @@ Flamer.IndexedDB = (function(Flamer) {
     };
 
     request.onsuccess = function(e) {
-      Flamer.db = e.target.result;
+      Flamite.db = e.target.result;
       callback && callback({
         upgradeneeded: upgradeneeded
       });
@@ -42,10 +42,10 @@ Flamer.IndexedDB = (function(Flamer) {
   }
 
   function getMatches(limit, offset, callback) {
-    var os = Flamer.db.transaction(['matches']).objectStore('matches');
+    var os = Flamite.db.transaction(['matches']).objectStore('matches');
     var index = os.index('last_activity_date');
     var offset = offset ? IDBKeyRange.upperBound(offset) : null;
-    var limit = limit ? limit : 50;
+    var limit = limit ? limit : 70;
     var forIndex = 1;
     var matches = [];
 
@@ -72,4 +72,4 @@ Flamer.IndexedDB = (function(Flamer) {
     reset: reset,
     getMatches: getMatches
   };
-})(Flamer);
+})(Flamite);

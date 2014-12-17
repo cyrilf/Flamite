@@ -1,1 +1,1 @@
-Flamer.init();
+Flamite.init();

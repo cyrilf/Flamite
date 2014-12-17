@@ -11,10 +11,10 @@
         </div>
         <div class="actions">
           {{#unless user.matchId}}
-            <button {{action like 1 target='view'}} {{bind-attr class=':button-patch :big :green user.liked:active user.disliked:inactive'}}>Like</button>
-            <button {{action like 0 target='view'}} {{bind-attr class=':button-patch :big :red user.disliked:active user.liked:inactive'}}>Dislike</button>
+            <button {{action like 1 target='view'}} {{bind-attr class=':button-patch :big :green user.liked:animate-like-action-in user.disliked:animate-like-action-out'}}>{{view.likeValue}}</button>
+            <button {{action like 0 target='view'}} {{bind-attr class=':button-patch :big :red user.disliked:animate-like-action-in user.liked:animate-like-action-out'}}>{{view.dislikeValue}}</button>
           {{else}}
-            <button class="button medium pink active">Match!</button>
+            <button class="button-patch big pink active">Match!</button>
           {{/unless}}
         </div>
       </div>

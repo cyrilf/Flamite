@@ -2,17 +2,17 @@
  * Facebook
  */
 
-Flamer.Facebook = (function(Flamer) {
+Flamite.Facebook = (function(Flamite) {
 
   function facebookAuthSuccess(facebook_token, tabId) {
-    Flamer.Tinter.request('auth', 'POST', {
+    Flamite.Tinter.request('auth', 'POST', {
       facebook_token: facebook_token
     }, {
       tabId: tabId
     }).done(function(result) {
-      Flamer.setUser(result.user);
-      Flamer.Tinter.setToken(result.token);
-      Flamer.openAppTab(tabId);
+      Flamite.setUser(result.user);
+      Flamite.Tinter.setToken(result.token);
+      Flamite.openAppTab(tabId);
     });
   }
 
@@ -45,4 +45,4 @@ Flamer.Facebook = (function(Flamer) {
     },
     openAuthTab: openAuthTab
   };
-})(Flamer);
+})(Flamite);

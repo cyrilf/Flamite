@@ -15,3 +15,24 @@
     height: 202px;
   }
 }
+
+@include keyframe(like-action-in) {
+  0% {
+    width: 60%;
+  }
+  100% {
+    width: 100%;
+    opacity: .8;
+  }
+}
+
+@include keyframe(like-action-out) {
+  0% {
+    width: 40%;
+  }
+  100% {
+    width: 0%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

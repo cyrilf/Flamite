@@ -1,7 +1,7 @@
 .page-like {
   .no-more {
     padding: 62px;
-    color: #C0C2C9;
+    color: #5164A0;
     font-size: 2em;
   }
 
@@ -37,7 +37,7 @@
       position: relative;
       padding: 12px;
       height: 100%;
-      background: #F0F2F7;
+      background: #F8FAFF;
     }
 
     .actions {
@@ -45,6 +45,7 @@
       left: 0;
       bottom: 0;
       width: 100%;
+      background: #fff;
 
       .button-patch {
         float: left;
@@ -67,23 +68,31 @@
 
     .username {
       font-family: 'Raleway-Regular';
-      font-size: 1.4em;
-      color: $color-blue-strong;
+      font-size: 1.3em;
+      color: #3C4666;
 
       .age {
-        color: #737F9E;
+        color: #80889D;
       }
     }
 
     .min-title {
       margin-top: 8px;
-      font-size: 0.7em;
-      text-transform: uppercase;
+      font-size: 0.6em;
+      color: #444854;
     }
     .min-value {
       font-size: 0.8em;
-      color: #5D6783;
+      color: #444854;
     }
+  }
+
+  .animate-like-action-in {
+    @include animation(like-action-in .8s ease forwards);
+  }
+
+  .animate-like-action-out {
+    @include animation(like-action-out .8s ease forwards);
   }
 }
 
@@ -104,7 +113,6 @@
     small {
       font-size: 0.8em;
       text-transform: uppercase;
-      color: #BFC3CF;
     }
   }
 
@@ -113,10 +121,9 @@
     bottom: 12px;
     right: 32px;
     font-size: 0.8em;
-    color: #8088A0;
 
     a {
-      color: #BFC3CF;
+      color: #FFF;
     }
   }
 }

@@ -2,7 +2,7 @@
  * Tinter
  */
 
-Flamer.Tinter = (function(Flamer) {
+Flamite.Tinter = (function(Flamite) {
   var token = false;
   var updated = false;
   var last_update = null;
@@ -22,7 +22,7 @@ Flamer.Tinter = (function(Flamer) {
       }
     }).fail(function(error) {
       if (error.status == 401) {
-        Flamer.openWelcomeTab(options ? options.tabId : null);
+        Flamite.openWelcomeTab(options ? options.tabId : null);
       }
     });
   }
@@ -38,7 +38,7 @@ Flamer.Tinter = (function(Flamer) {
 
   function updateTinterData(tabId, callback) {
     var last_activity_date = localStorage.getItem('last_activity_date');
-    var user = Flamer.getUser();
+    var user = Flamite.getUser();
 
     // check if update is allow
     if (updated || (last_update && last_update > (new Date().getTime() - 2000))) {
@@ -51,7 +51,7 @@ Flamer.Tinter = (function(Flamer) {
     last_update = new Date().getTime();
 
     // make Tinter update request
-    var prm = Flamer.Tinter.request('updates', 'POST', {
+    var prm = Flamite.Tinter.request('updates', 'POST', {
       last_activity_date: last_activity_date ? last_activity_date : ''
     }, {
       tabId: tabId
@@ -65,7 +65,7 @@ Flamer.Tinter = (function(Flamer) {
         var match = obj.matches[i];
 
         (function(match, i) {
-          var os = Flamer.db.transaction(['matches'], 'readwrite').objectStore('matches');
+          var os = Flamite.db.transaction(['matches'], 'readwrite').objectStore('matches');
           var req = os.get(match['_id']);
 
           req.onsuccess = function(e) {
@@ -128,7 +128,7 @@ Flamer.Tinter = (function(Flamer) {
       
       // Tinter request
       if (request.type === 'request') {
-        var prm = Flamer.Tinter.request(
+        var prm = Flamite.Tinter.request(
           request.path, 
           request.method ? request.method : 'GET', 
           request.data ? request.data : {},
@@ -146,14 +146,14 @@ Flamer.Tinter = (function(Flamer) {
 
       // matches
       else if (request.type === 'matches') {
-        Flamer.IndexedDB.getMatches(request.limit, request.offset, function(matches) {
+        Flamite.IndexedDB.getMatches(request.limit, request.offset, function(matches) {
           sendResponse(matches);
         });
       }
 
       // match
       else if (request.type === 'match') {
-        var os = Flamer.db.transaction(['matches'], 'readwrite').objectStore('matches');
+        var os = Flamite.db.transaction(['matches'], 'readwrite').objectStore('matches');
         var req = os.get(request.id);
 
         req.onsuccess = function(e) {
@@ -170,7 +170,7 @@ Flamer.Tinter = (function(Flamer) {
 
       // post message
       else if (request.type === 'message_post') {
-        Flamer.Tinter.request('user/matches/' + request.id, 'POST', {
+        Flamite.Tinter.request('user/matches/' + request.id, 'POST', {
           message: request.message
         });
 
@@ -196,4 +196,4 @@ Flamer.Tinter = (function(Flamer) {
     setToken: setToken,
     getToken: getToken
   };
-})(Flamer);
+})(Flamite);

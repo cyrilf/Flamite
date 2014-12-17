@@ -1,4 +1,4 @@
-Flamer.MatchesMatchRoute = Ember.Route.extend({
+Flamite.MatchesMatchRoute = Ember.Route.extend({
   timeout: null,
   updateEvent: false,
   ts: false,
@@ -30,7 +30,7 @@ Flamer.MatchesMatchRoute = Ember.Route.extend({
         var person = {
           id: _user._id,
           name: _user.name,
-          age: Flamer.calculateAge(birth_date),
+          age: Flamite.calculateAge(birth_date),
           photo: _user.photos[0].processedFiles[3].url
         };
 
@@ -41,10 +41,10 @@ Flamer.MatchesMatchRoute = Ember.Route.extend({
         for (var i = offset; i < _match.messages.length; i++) {
           var message = _match.messages[i];
 
-          if (message.from == Flamer.user._id) {
+          if (message.from == Flamite.user._id) {
             var author = {
-              name: Flamer.user.name,
-              photo: Flamer.user.photo
+              name: Flamite.user.name,
+              photo: Flamite.user.photo
             };
           } else {
             var author = {
@@ -63,7 +63,7 @@ Flamer.MatchesMatchRoute = Ember.Route.extend({
         var match = {
           id: _match._id,
           person: person,
-          created_date: Flamer.formatDate(created_date, true),
+          created_date: Flamite.formatDate(created_date, true),
           messages: messages
         };
 

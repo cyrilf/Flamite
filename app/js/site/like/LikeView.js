@@ -1,8 +1,11 @@
-Flamer.LikeView = Ember.View.extend({
+Flamite.LikeView = Ember.View.extend({
   itemView: Ember.View.extend({
     tagName: 'div',
     classNames: ['item'],
     templateName: 'like.item',
+
+    likeValue: 'Like',
+    dislikeValue: 'Dislike',
 
     like: function(like) {
       var self = this;
@@ -13,8 +16,10 @@ Flamer.LikeView = Ember.View.extend({
 
       if (like) {
         this.set('user.liked', true);
+        this.set('likeValue', 'Liked!');
       } else {
         this.set('user.disliked', true);
+        this.set('dislikeValue', 'Disliked!');
       }
 
       this.get('controller').send('like', like, this.get('user'), function(result) {

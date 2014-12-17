@@ -1,4 +1,4 @@
-Flamer.LikeController = Ember.ArrayController.extend({
+Flamite.LikeController = Ember.ArrayController.extend({
   delay: 1500,
   running: false,
   getMore: false,

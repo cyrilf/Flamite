@@ -1,4 +1,4 @@
-Flamer.ProfileRoute = Ember.Route.extend({
+Flamite.ProfileRoute = Ember.Route.extend({
   model: function(params) {
     return new Ember.RSVP.Promise(function(resolve) {
       chrome.runtime.sendMessage({
@@ -31,9 +31,9 @@ Flamer.ProfileRoute = Ember.Route.extend({
         resolve({
           id: _user._id,
           name: _user.name,
-          bio: Flamer.formatText(_user.bio),
-          age: Flamer.calculateAge(birth_date),
-          ping_time: Flamer.formatDate(ping_time, true),
+          bio: Flamite.formatText(_user.bio),
+          age: Flamite.calculateAge(birth_date),
+          ping_time: Flamite.formatDate(ping_time, true),
           distance_km: Math.round(_user.distance_mi * 1.609),
           distance_mi: _user.distance_mi,
           photos: photos,

@@ -1,14 +1,14 @@
 /**
- * Flamer
+ * Flamite
  */
 
 // Init app
-var Flamer = Ember.Application.create({
+var Flamite = Ember.Application.create({
   rootElement: '#app'
 });
 
 // Router
-Flamer.Router.map(function() {
+Flamite.Router.map(function() {
   this.route('like', {path: '/'});
   this.route('profile', {path: '/profile/:user'});
   
@@ -18,13 +18,13 @@ Flamer.Router.map(function() {
 });
 
 // SessionApplicationRouteMixin
-Flamer.SessionApplicationRouteMixin = Ember.Mixin.create({
+Flamite.SessionApplicationRouteMixin = Ember.Mixin.create({
   beforeModel: function(transition) {
     return new Ember.RSVP.Promise(function(resolve, reject) {
       chrome.runtime.sendMessage({type: 'user'}, function(user) {
         if (user) {
-          Flamer.user = user;
-          Flamer.user.photo = user.photos[0].processedFiles[3].url;
+          Flamite.user = user;
+          Flamite.user.photo = user.photos[0].processedFiles[3].url;
           resolve();
         }
       });

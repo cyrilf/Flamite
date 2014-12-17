@@ -1,8 +1,8 @@
-Flamer.ApplicationController = Ember.Controller.extend({
+Flamite.ApplicationController = Ember.Controller.extend({
   user: null,
 
   init: function() {
-    this.set('user', Flamer.User);
+    this.set('user', Flamite.User);
 
     setInterval(function() {
       chrome.runtime.sendMessage({type: 'update'});

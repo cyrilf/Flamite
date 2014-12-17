@@ -1,5 +1,5 @@
-Flamer.ApplicationRoute = Ember.Route.extend(Flamer.SessionApplicationRouteMixin, {
+Flamite.ApplicationRoute = Ember.Route.extend(Flamite.SessionApplicationRouteMixin, {
   afterModel: function() {
-    this.controllerFor('application').set('user', Flamer.user);
+    this.controllerFor('application').set('user', Flamite.user);
   }
 });
