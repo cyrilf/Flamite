@@ -1,6 +1,8 @@
 build/
 bower_components/
 node_modules/
-bolinter.sublime-project
-bolinter.sublime-workspace
+flamite.sublime-project
+flamite.sublime-workspace
 app/js/config.js
+Flamite.pem
+key.pem
