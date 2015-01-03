@@ -1,6 +1,6 @@
 {
   "name": "Flamite",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "devDependencies": {
     "bower": "latest",
     "gulp": "latest",
