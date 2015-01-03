@@ -45,7 +45,7 @@ Flamite.IndexedDB = (function(Flamite) {
     var os = Flamite.db.transaction(['matches']).objectStore('matches');
     var index = os.index('last_activity_date');
     var offset = offset ? IDBKeyRange.upperBound(offset) : null;
-    var limit = limit ? limit : 150;
+    var limit = limit ? limit : 200;
     var forIndex = 1;
     var matches = [];
 
