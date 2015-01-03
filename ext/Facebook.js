@@ -5,13 +5,13 @@
 Flamite.Facebook = (function(Flamite) {
 
   function facebookAuthSuccess(facebook_token, tabId) {
-    Flamite.Tinter.request('auth', 'POST', {
+    Flamite.Tinder.request('auth', 'POST', {
       facebook_token: facebook_token
     }, {
       tabId: tabId
     }).done(function(result) {
       Flamite.setUser(result.user);
-      Flamite.Tinter.setToken(result.token);
+      Flamite.Tinder.setToken(result.token);
       Flamite.openAppTab(tabId);
     });
   }

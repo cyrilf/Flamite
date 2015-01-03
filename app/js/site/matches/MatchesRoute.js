@@ -1,6 +1,7 @@
 Flamite.MatchesRoute = Ember.Route.extend({
   updateEvent: false,
   ts: false,
+  last_activity_date: null,
 
   activate: function() {
     var self = this;
@@ -11,6 +12,7 @@ Flamite.MatchesRoute = Ember.Route.extend({
   },
 
   deactivate: function() {
+    this.set('last_activity_date', null);
     clearInterval(this.get('ts'));
   },
 
@@ -22,23 +24,40 @@ Flamite.MatchesRoute = Ember.Route.extend({
   },
   
   model: function(params) {
-    return new Ember.RSVP.Promise(function(resolve) {
+    var self = this;
+
+    return new Ember.RSVP.Promise(function(resolve, reject) {
       chrome.runtime.sendMessage({
         type: 'matches',
-        offset: params.queryParams.page ? params.queryParams.page : null
-      }, function(results) {
-        for (var i = 0; i < results.length; i++) {
-          var match = results[i];
+        last_activity_date: self.get('last_activity_date')
+      }, function(result) {
+
+        // no update
+        if (result.last_activity_date == self.get('last_activity_date')) {
+          reject('no update');
+          return;
+        }
+
+        // matches parse
+        result.matches.map(function(match, index) {
+          match.id = match._id;
 
           if (match.person.photos.length > 0) {
-            match.id = match._id;
             match.person.photo = match.person.photos[0].processedFiles[3].url;
           }
 
-          results[i] = match;
-        }
-        resolve(results);
+          if (index == 0) {
+            
+          }
+        });
+
+        self.set('last_activity_date', result.last_activity_date);
+        resolve(result.matches);
       });
     });
+  },
+
+  actions: {
+    error: function(reason) {}
   }
 });

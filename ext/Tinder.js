@@ -1,8 +1,8 @@
 /**
- * Tinter
+ * Tinder
  */
 
-Flamite.Tinter = (function(Flamite) {
+Flamite.Tinder = (function(Flamite) {
   var token = false;
   var updated = false;
   var last_update = null;
@@ -15,8 +15,8 @@ Flamite.Tinter = (function(Flamite) {
       beforeSend: function(request) {
         if (path !== 'auth') {
           request.setRequestHeader('X-Auth-Token', token);
-          request.setRequestHeader('os-version', 19);
-          request.setRequestHeader('app-version', 759);
+          request.setRequestHeader('os-version', 21);
+          request.setRequestHeader('app-version', 767);
           request.setRequestHeader('platform', 'android');
         }
       }
@@ -36,7 +36,7 @@ Flamite.Tinter = (function(Flamite) {
     return token;
   }
 
-  function updateTinterData(tabId, callback) {
+  function updateTinderData(tabId, callback) {
     var last_activity_date = localStorage.getItem('last_activity_date');
     var user = Flamite.getUser();
 
@@ -50,8 +50,8 @@ Flamite.Tinter = (function(Flamite) {
     updated = true;
     last_update = new Date().getTime();
 
-    // make Tinter update request
-    var prm = Flamite.Tinter.request('updates', 'POST', {
+    // make Tinder update request
+    var prm = Flamite.Tinder.request('updates', 'POST', {
       last_activity_date: last_activity_date ? last_activity_date : ''
     }, {
       tabId: tabId
@@ -118,7 +118,7 @@ Flamite.Tinter = (function(Flamite) {
     chrome.webRequest.onBeforeSendHeaders.addListener(function(details) {
       for (var i = 0; i < details.requestHeaders.length; ++i) {
         if (details.requestHeaders[i].name === 'User-Agent') {
-          details.requestHeaders[i].value = 'Tinter Android Version 3.2.1';
+          details.requestHeaders[i].value = 'Tinder Android Version 4.0.3';
         }
       }
       return {requestHeaders: details.requestHeaders};
@@ -126,9 +126,9 @@ Flamite.Tinter = (function(Flamite) {
 
     chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
       
-      // Tinter request
+      // Tinder request
       if (request.type === 'request') {
-        var prm = Flamite.Tinter.request(
+        var prm = Flamite.Tinder.request(
           request.path, 
           request.method ? request.method : 'GET', 
           request.data ? request.data : {},
@@ -146,31 +146,57 @@ Flamite.Tinter = (function(Flamite) {
 
       // matches
       else if (request.type === 'matches') {
-        Flamite.IndexedDB.getMatches(request.limit, request.offset, function(matches) {
-          sendResponse(matches);
+        var last_activity_date = localStorage.getItem('last_activity_date');
+
+        if (request.last_activity_date == last_activity_date) {
+          sendResponse({
+            last_activity_date: last_activity_date
+          });
+
+          return;
+        }
+
+        Flamite.IndexedDB.getMatches(null, null, function(matches) {
+          sendResponse({
+            matches: matches,
+            last_activity_date: last_activity_date
+          });
         });
       }
 
       // match
       else if (request.type === 'match') {
+        var last_activity_date = localStorage.getItem('last_activity_date');
+
+        if (request.force == false && request.last_activity_date == last_activity_date) {
+          sendResponse({
+            last_activity_date: last_activity_date
+          });
+
+          return;
+        }
+
         var os = Flamite.db.transaction(['matches'], 'readwrite').objectStore('matches');
         var req = os.get(request.id);
 
         req.onsuccess = function(e) {
           var data = e.target.result;
+
           if (data) {
             data.new_data = false;
             os.put(data);
-            sendResponse(data);
-          } else {
-            sendResponse(false);
           }
+
+          sendResponse({
+            match: data,
+            last_activity_date: last_activity_date
+          });
         };
       }
 
       // post message
       else if (request.type === 'message_post') {
-        Flamite.Tinter.request('user/matches/' + request.id, 'POST', {
+        Flamite.Tinder.request('user/matches/' + request.id, 'POST', {
           message: request.message
         });
 
@@ -179,7 +205,7 @@ Flamite.Tinter = (function(Flamite) {
 
       // update data
       else if (request.type === 'update') {
-        updateTinterData(sender.tab.id);
+        updateTinderData(sender.tab.id);
         return false;
       }
 

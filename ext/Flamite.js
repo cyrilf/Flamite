@@ -47,7 +47,7 @@ var Flamite = (function() {
 
   function reset() {
     resetLocalStorage();
-    Flamite.Tinter.setToken(null);
+    Flamite.Tinder.setToken(null);
     Flamite.IndexedDB.reset();
   }
 
@@ -78,8 +78,8 @@ var Flamite = (function() {
     // listen Flamite button
     chrome.browserAction.onClicked.addListener(function(tab) {
 
-      // if Tinter token get update
-      if (Flamite.Tinter.getToken()) {
+      // if Tinder token get update
+      if (Flamite.Tinder.getToken()) {
         openAppTab();
       }
 
@@ -100,13 +100,13 @@ var Flamite = (function() {
       Flamite.IndexedDB.init(function(result) {
 
         // init
-        Flamite.Tinter.init();
+        Flamite.Tinder.init();
         Flamite.Facebook.init();
 
         // reset localstorage if IndexedDB need upgrade
         if (result.upgradeneeded) {
           resetLocalStorage();
-          Flamite.Tinter.setToken(null);
+          Flamite.Tinder.setToken(null);
         }
 
         // user

@@ -118,12 +118,28 @@
 
   .info {
     position: absolute;
-    bottom: 12px;
+    bottom: 32px;
     right: 32px;
     font-size: 0.8em;
 
     a {
       color: #FFF;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
+  }
+
+  .review {
+    margin-bottom: 12px;
+    font-size: 1.4em;
+    color: #FFCA90;
+  }
+
+  .donate {
+    background: #FFF;
+    border-radius: 4px;
+    padding: 3px;
   }
 }

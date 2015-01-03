@@ -2,49 +2,68 @@ Flamite.MatchesMatchRoute = Ember.Route.extend({
   timeout: null,
   updateEvent: false,
   ts: false,
+  last_activity_date: null,
+  match_id: null,
   
   activate: function() {
     var self = this;
 
     this.set('ts', setInterval(function() {
       self.refresh();
-    }, 6000));
+    }, 2000));
   },
 
   deactivate: function() {
+    this.set('last_activity_date', null);
     clearInterval(this.get('ts'));
   },
 
   model: function(params) {
-    return new Ember.RSVP.Promise(function(resolve) {
+    var self = this;
+    var force = self.get('match_id') != params.match_id;
+
+    return new Ember.RSVP.Promise(function(resolve, reject) {
       chrome.runtime.sendMessage({
         type: 'match',
-        id: params.match_id
-      }, function(_match) {
-        var _user = _match.person;
+        id: params.match_id,
+        last_activity_date: self.get('last_activity_date'),
+        force: force
+      }, function(result) {
+
+        // no update
+        if (force == false && result.last_activity_date == self.get('last_activity_date')) {
+            reject('no update');
+            return;
+        }
+
+        var user = result.match.person;
 
         // dates
-        var birth_date = new Date(_user.birth_date);
-        var created_date = new Date(_match.created_date);
+        var birth_date = new Date(user.birth_date);
+        var created_date = new Date(result.match.created_date);
 
+        // person
         var person = {
-          id: _user._id,
-          name: _user.name,
+          id: user._id,
+          name: user.name,
           age: Flamite.calculateAge(birth_date),
-          photo: _user.photos[0].processedFiles[3].url
+          photo: user.photos[0].processedFiles[3].url
         };
 
-        var limit = 60;
-        var offset = _match.messages.length > limit ? _match.messages.length - limit : 0;
-
+        // messages list
         var messages = [];
-        for (var i = offset; i < _match.messages.length; i++) {
-          var message = _match.messages[i];
+        var user_on = null;
+        var limit = 60;
+        var offset = result.match.messages.length > limit ? result.match.messages.length - limit : 0;
+
+        for (var i = offset; i < result.match.messages.length; i++) {
+          var message = result.match.messages[i];
 
           if (message.from == Flamite.user._id) {
             var author = {
               name: Flamite.user.name,
-              photo: Flamite.user.photo
+              photo: Flamite.user.photo,
+              its_me: true
             };
           } else {
             var author = {
@@ -53,22 +72,35 @@ Flamite.MatchesMatchRoute = Ember.Route.extend({
             };
           }
 
+          console.log('a', user_on != author.name);
+
           messages.push({
             timestamp: message.timestamp,
             content: message.message,
-            author: author
+            author: author,
+            display_photo: user_on != author.name
           });
+
+          if (user_on != author.name) {
+            user_on = author.name;
+          }
         }
 
         var match = {
-          id: _match._id,
+          id: result.match._id,
           person: person,
           created_date: Flamite.formatDate(created_date, true),
           messages: messages
         };
 
+        self.set('last_activity_date', result.last_activity_date);
+        self.set('match_id', result.match._id);
         resolve(match);
       });
     });
+  },
+
+  actions: {
+    error: function(reason) {}
   }
 });

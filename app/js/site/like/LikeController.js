@@ -5,6 +5,7 @@ Flamite.LikeController = Ember.ArrayController.extend({
   displayNb: 0,
   users: [],
   likeAuto: false,
+  dislikeAuto: false,
   noMore: false,
   stats: {
     profiles: 0,

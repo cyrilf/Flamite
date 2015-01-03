@@ -11,9 +11,9 @@
   <ul class="messages">
     {{#each message in model.messages}}
       <li class="item">
-        <div class="photo-container"><img {{bind-attr src="message.author.photo"}} class="user-photo"></div>
+        <div class="photo-container"><img {{bind-attr src="message.author.photo" class=":user-photo message.display_photo::hidden"}}></div>
         <div class="message">
-          <div class="content">
+          <div {{bind-attr class=":content message.author.its_me:gray"}}>
             {{message.content}}
           </div>
         </div>

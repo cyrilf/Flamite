@@ -25,7 +25,7 @@ Flamite.IndexedDB = (function(Flamite) {
   }
 
   function init(callback) {
-    var request = indexedDB.open('bolinter', 14);
+    var request = indexedDB.open('bolinter', 15);
     var upgradeneeded = false;
 
     request.onupgradeneeded = function(e) {
@@ -45,7 +45,7 @@ Flamite.IndexedDB = (function(Flamite) {
     var os = Flamite.db.transaction(['matches']).objectStore('matches');
     var index = os.index('last_activity_date');
     var offset = offset ? IDBKeyRange.upperBound(offset) : null;
-    var limit = limit ? limit : 70;
+    var limit = limit ? limit : 150;
     var forIndex = 1;
     var matches = [];
 
@@ -53,7 +53,11 @@ Flamite.IndexedDB = (function(Flamite) {
       var cursor = event.target.result;
       
       if (cursor) {
-        matches.push(cursor.value);
+        var match = cursor.value;
+
+        if (match.person && match.messages) {
+          matches.push(cursor.value);
+        }
 
         if (forIndex < limit) {
           cursor.continue();

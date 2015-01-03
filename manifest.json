@@ -1,6 +1,6 @@
 {
   "name": "Flamite",
-  "version": "2.0.1",
+  "version": "2.1.1",
   "manifest_version": 2,
   "description": "Unofficial Tinder client.",
   "permissions": [
