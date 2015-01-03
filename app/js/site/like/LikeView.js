@@ -33,7 +33,7 @@ Flamite.LikeView = Ember.View.extend({
 
     didInsertElement: function() {
       if (this.get('controller.running') && this.get('controller.likeAuto')) {
-        if (!this.get('controller.dislikeAuto') || (Math.random() > 0.1)) {
+        if (!this.get('controller.dislikeAuto') || (Math.random() > 0.15)) {
           this.like(true);
         } else {
           this.like(false);
