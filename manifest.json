@@ -1,13 +1,14 @@
 {
   "name": "Flamite",
-  "version": "2.1.5",
+  "version": "2.2.0",
   "manifest_version": 2,
   "description": "Unofficial Tinder client.",
   "permissions": [
     "storage", 
     "webRequest",
     "webRequestBlocking",
-    "https://api.gotinder.com/*"
+    "https://api.gotinder.com/*",
+    "http://flamite.com/*"
   ],
   "content_security_policy": "script-src 'self' https://api.gotinder.com https://ssl.google-analytics.com 'unsafe-eval'; object-src 'self'",
   "browser_action": {
@@ -42,6 +43,17 @@
         "ext/facebookAuth.js"
       ],
       "css": ["ext/facebookAuth.css"]
+    },
+    {
+      "matches" : ["http://flamite.com/*"],
+      "run_at": "document_end",
+      "js": [
+        "vendor/jquery.min.js",
+        "vendor/handlebars.js",
+        "vendor/ember.min.js",
+        "app/js/templates.js",
+        "app/js/app.js"
+      ]
     }
   ]
 }

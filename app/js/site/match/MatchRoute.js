@@ -72,8 +72,6 @@ Flamite.MatchesMatchRoute = Ember.Route.extend({
             };
           }
 
-          console.log('a', user_on != author.name);
-
           messages.push({
             timestamp: message.timestamp,
             content: message.message,

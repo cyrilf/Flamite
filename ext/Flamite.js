@@ -8,11 +8,11 @@ var Flamite = (function() {
   function openAppTab(tabId) {
     if (tabId) {
       chrome.tabs.update(tabId, {
-        url: '/app/index.html'
+        url: 'http://flamite.com'
       });
     } else {
       chrome.tabs.create({
-        url : '/app/index.html'
+        url : 'http://flamite.com'
       });
     }
   }
