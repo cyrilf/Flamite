@@ -1,11 +1,12 @@
 {
   "name": "Flamite",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "devDependencies": {
     "bower": "latest",
     "gulp": "latest",
     "gulp-clean": "latest",
     "gulp-sass": "latest",
+    "gulp-bump": "latest",
     "gulp-watch": "latest",
     "gulp-concat": "latest",
     "run-sequence": "latest",
